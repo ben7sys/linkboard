@@ -1,0 +1,393 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
+
+:root {
+    --text-color: #a3a3a3;
+    --header-color: #ffffff;
+    /*--background-color: #181818;*/
+    --background-color: #111111;
+    --highlight-color: #306dcb;
+    --tag-background: #333333;
+    --tag-color: #fff;
+  }
+
+/* Basic styles for Link Dashboard */
+body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.controls button {
+    font-size: 1.2em;
+    padding: 8px 12px;
+}
+
+/* Search and Filter styles */
+#searchAndFilter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+#searchInput {
+    flex-grow: 1;
+    max-width: 500px;
+    margin-right: 10px;
+    padding: 8px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#tagFilter {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+}
+
+/* Add Link Form styles */
+#addLinkForm {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#addLinkForm h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+#linkForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#linkForm input, #linkForm textarea {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#linkForm textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#linkForm button {
+    align-self: flex-start;
+}
+
+/* Tile view styles */
+#tileContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.link-tile {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column; 
+    height: 170px; /* Fixed height for consistency */
+}
+
+.link-tile h3 {
+    margin-top: 0;
+    margin-bottom: 4px;
+    font-size: 1.2em;
+    height: 1.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.link-tile a {
+    display: block;
+    margin-bottom: 10px;
+    word-break: break-all;
+    font-size: 0.9em; /* Smaller font size for links */
+    height: 1.2em; /* Fixed height for 2 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.link-tile .tags {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    overflow: hidden;
+    height: 1.5em; /* Fixed height for 1 line */
+}
+
+.link-tile .tag {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 0.8em;
+    padding: 2px 4px;
+    border-radius: 3px;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.link-tile .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    height: 2em; /* Fixed height for action buttons */
+}
+
+/* List view styles */
+#listContainer {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.favicon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #191919;
+    color: #fff;
+}
+
+body.dark-mode #addLinkForm,
+body.dark-mode .link-tile,
+body.dark-mode th,
+body.dark-mode td,
+body.dark-mode .modal-content {
+    border-color: #444444;
+    background-color: #202020;
+}
+
+body.dark-mode #linkForm input,
+body.dark-mode #linkForm textarea,
+body.dark-mode #searchInput,
+body.dark-mode #tagFilter {
+    background-color: #444;
+    color: #fff;
+    border-color: #555;
+}
+
+body.dark-mode th {
+    background-color: #444;
+}
+
+body.dark-mode .link-tile .tag {
+    background-color: #333333;
+    color: #ddd;
+}
+
+body.dark-mode .close {
+    color: #ddd;
+}
+
+body.dark-mode .close:hover,
+body.dark-mode .close:focus {
+    color: #fff;
+}
+
+/* Button styles */
+button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.editBtn, .deleteBtn, .info-btn {
+    background: none;
+    border: none;
+    font-size: 1.1em;
+    padding: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.1s;
+    color: rgba(0, 0, 0, 0.5); /* Lighter color for icons */
+}
+
+.editBtn:hover, .deleteBtn:hover, .info-btn:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .editBtn,
+body.dark-mode .deleteBtn,
+body.dark-mode .info-btn {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode .editBtn:hover,
+body.dark-mode .deleteBtn:hover,
+body.dark-mode .info-btn:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Link styles */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+body.dark-mode a {
+    color: #4da6ff;
+}
+
+/* Icon button styles */
+.controls button {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    padding: 8px;
+    color: rgba(0, 123, 255, 0.7);
+    transition: color 0.3s, transform 0.1s;
+}
+
+.controls button:hover {
+    color: rgba(0, 86, 179, 0.9);
+    transform: translateY(-1px);
+}
+
+.controls button:active {
+    transform: translateY(1px);
+}
+
+body.dark-mode .controls button {
+    color: rgba(77, 166, 255, 0.7);
+}
+
+body.dark-mode .controls button:hover {
+    color: rgba(121, 188, 255, 0.9);
+}
+
+/* Ensure contrast for placeholder text in dark mode */
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #aaa;
+}
+
+/* Header styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+#darkModeToggle {
+    font-size: 0.8em;
+    padding: 4px 8px;
+}
+
+/* Add link button styles */
+#addLinkBtn {
+    margin-right: auto;
+}
+
+/* View toggle button styles */
+#viewToggle {
+    margin-left: 10px;
+}
+
