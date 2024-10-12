@@ -1,0 +1,340 @@
+/* Add Link Form styles */
+#addLinkForm {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#addLinkForm h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+#linkForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#linkForm input, #linkForm textarea {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#linkForm textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#linkForm button {
+    align-self: flex-start;
+}
+
+/* Tag Input Container styles */
+#tagInputContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#tagList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tag {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+}
+
+.tag .remove-tag {
+    margin-left: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#tagInput {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 0.9em;
+}
+
+/* Tag auto-suggestion styles */
+#tagSuggestions {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    max-height: 150px;
+    overflow-y: auto;
+    width: calc(100% - 42px);
+    display: none;
+}
+
+.tag-suggestion {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.tag-suggestion:hover {
+    background-color: #f0f0f0;
+}
+
+/* Tile styles */
+.link-tile {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column; 
+    height: 220px; /* Increased height to accommodate notes */
+}
+
+.link-tile h3 {
+    margin-top: 0;
+    margin-bottom: 4px;
+    font-size: 1.2em;
+    height: 1.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.link-tile a {
+    display: block;
+    margin-bottom: 10px;
+    word-break: break-all;
+    font-size: 0.9em;
+    height: 1.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.link-tile .title-container,
+.link-tile .url-container,
+.link-tile .tags-container,
+.link-tile .notes-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
+
+.link-tile .tags {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    overflow: hidden;
+    height: 1.5em;
+}
+
+.link-tile .tag {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 0.8em;
+    padding: 2px 4px;
+    border-radius: 3px;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.link-tile .notes {
+    flex-grow: 1;
+    margin-top: 5px;
+    font-size: 0.9em;
+    height: 3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.link-tile .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    height: 2em;
+}
+
+/* Button styles */
+.controls button {
+    font-size: 1.2em;
+    padding: 8px 12px;
+}
+
+#searchInput {
+    flex-grow: 1;
+    max-width: 500px;
+    margin-right: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#tagFilter {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.editBtn, .deleteBtn, .info-btn, .saveBtn, .edit-title-btn, .edit-url-btn, .edit-tags-btn, .edit-notes-btn {
+    background: none;
+    border: none;
+    font-size: 1.1em;
+    padding: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.1s;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.editBtn:hover, .deleteBtn:hover, .info-btn:hover, .saveBtn:hover, 
+.edit-title-btn:hover, .edit-url-btn:hover, .edit-tags-btn:hover, .edit-notes-btn:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.controls button {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    padding: 8px;
+    color: rgba(0, 123, 255, 0.7);
+    transition: color 0.3s, transform 0.1s;
+}
+
+.controls button:hover {
+    color: rgba(0, 86, 179, 0.9);
+    transform: translateY(-1px);
+}
+
+.controls button:active {
+    transform: translateY(1px);
+}
+
+#darkModeToggle {
+    font-size: 0.8em;
+    padding: 4px 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.favicon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+/* Editable content styles */
+.editable {
+    cursor: text;
+    padding: 2px;
+    border: 1px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.editable:hover, .editable:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* List view styles */
+#listContainer table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#listContainer th, #listContainer td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+#listContainer th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+#listContainer tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#listContainer tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* New styles for edit buttons */
+.edit-title-btn, .edit-url-btn, .edit-tags-btn, .edit-notes-btn {
+    background: none;
+    border: none;
+    font-size: 0.9em;
+    padding: 2px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: color 0.3s;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.edit-title-btn:hover, .edit-url-btn:hover, .edit-tags-btn:hover, .edit-notes-btn:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+/* Adjustments for all editable containers */
+.title-container, .url-container, .tags-container, .notes-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
+
+.title-container h3, .url-container a, .tags, .notes {
+    flex-grow: 1;
+    margin-right: 5px;
+}
+
+/* Ensure edit buttons don't wrap */
+.edit-title-btn, .edit-url-btn, .edit-tags-btn, .edit-notes-btn {
+    flex-shrink: 0;
+}
+
+/* Specific adjustments for title and URL in list view */
+#listContainer .title-container,
+#listContainer .url-container {
+    display: flex;
+    align-items: center;
+}
+
+#listContainer .title-container span,
+#listContainer .url-container a {
+    flex-grow: 1;
+    margin-right: 5px;
+}

@@ -1,0 +1,69 @@
+body.dark-mode {
+    background-color: #191919;
+    color: #fff;
+}
+
+body.dark-mode #addLinkForm,
+body.dark-mode .link-tile,
+body.dark-mode th,
+body.dark-mode td,
+body.dark-mode .modal-content {
+    border-color: #444444;
+    background-color: #202020;
+}
+
+body.dark-mode #linkForm input,
+body.dark-mode #linkForm textarea,
+body.dark-mode #searchInput,
+body.dark-mode #tagFilter {
+    background-color: #444;
+    color: #fff;
+    border-color: #555;
+}
+
+body.dark-mode th {
+    background-color: #444;
+}
+
+body.dark-mode .link-tile .tag {
+    background-color: #333333;
+    color: #ddd;
+}
+
+body.dark-mode .close {
+    color: #ddd;
+}
+
+body.dark-mode .close:hover,
+body.dark-mode .close:focus {
+    color: #fff;
+}
+
+body.dark-mode .editBtn,
+body.dark-mode .deleteBtn,
+body.dark-mode .info-btn {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode .editBtn:hover,
+body.dark-mode .deleteBtn:hover,
+body.dark-mode .info-btn:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+body.dark-mode a {
+    color: #4da6ff;
+}
+
+body.dark-mode .controls button {
+    color: rgba(77, 166, 255, 0.7);
+}
+
+body.dark-mode .controls button:hover {
+    color: rgba(121, 188, 255, 0.9);
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #aaa;
+}

@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Link Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/light-mode.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body class="dark-mode">
@@ -29,7 +33,11 @@
                 <input type="hidden" id="linkId">
                 <input type="text" id="linkTitle" placeholder="Titel" required>
                 <input type="url" id="linkUrl" placeholder="URL" required>
-                <input type="text" id="linkTags" placeholder="Tags (kommagetrennt)">
+                <div id="tagInputContainer">
+                    <div id="tagList"></div>
+                    <input type="text" id="tagInput" placeholder="Neuen Tag hinzufügen">
+                    <div id="tagSuggestions"></div>
+                </div>
                 <textarea id="linkNotes" placeholder="Notizen"></textarea>
                 <button type="submit" id="submitBtn"><i class="fas fa-save"></i> Speichern</button>
             </form>
@@ -44,6 +52,7 @@
                         <th>Titel</th>
                         <th>URL</th>
                         <th>Tags</th>
+                        <th>Notizen</th>
                         <th>Aktionen</th>
                     </tr>
                 </thead>
@@ -64,266 +73,6 @@
         </div>
     </div>
 
-    <script>
-        // DOM elements
-        const toggleViewBtn = document.getElementById('toggleView');
-        const darkModeToggleBtn = document.getElementById('darkModeToggle');
-        const showAddLinkFormBtn = document.getElementById('showAddLinkForm');
-        const addLinkForm = document.getElementById('addLinkForm');
-        const linkForm = document.getElementById('linkForm');
-        const formTitle = document.getElementById('formTitle');
-        const submitBtn = document.getElementById('submitBtn');
-        const tileContainer = document.getElementById('tileContainer');
-        const listContainer = document.getElementById('listContainer');
-        const listBody = document.getElementById('listBody');
-        const detailedViewModal = document.getElementById('detailedViewModal');
-        const detailedViewTitle = document.getElementById('detailedViewTitle');
-        const detailedViewContent = document.getElementById('detailedViewContent');
-        const editInDetailedViewBtn = document.getElementById('editInDetailedView');
-        const searchInput = document.getElementById('searchInput');
-        const tagFilter = document.getElementById('tagFilter');
-        let isTileView = true;
-        let isDarkMode = true;
-
-        // Toggle view
-        toggleViewBtn.addEventListener('click', () => {
-            isTileView = !isTileView;
-            tileContainer.style.display = isTileView ? 'grid' : 'none';
-            listContainer.style.display = isTileView ? 'none' : 'block';
-            toggleViewBtn.innerHTML = isTileView ? '<i class="fas fa-th-list"></i>' : '<i class="fas fa-th"></i>';
-            toggleViewBtn.title = isTileView ? 'Zur Listenansicht' : 'Zur Kachelansicht';
-        });
-
-        // Toggle theme
-        darkModeToggleBtn.addEventListener('click', () => {
-            isDarkMode = !isDarkMode;
-            document.body.classList.toggle('dark-mode');
-            darkModeToggleBtn.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-            darkModeToggleBtn.title = isDarkMode ? 'Zum Light Mode' : 'Zum Dark Mode';
-        });
-
-        // Show/hide add link form
-        showAddLinkFormBtn.addEventListener('click', () => {
-            addLinkForm.style.display = addLinkForm.style.display === 'none' ? 'block' : 'none';
-            resetForm();
-        });
-
-        // API functions
-        async function fetchLinks() {
-            const response = await fetch('http://localhost:3000/api/links');
-            return await response.json();
-        }
-
-        async function addLink(link) {
-            const response = await fetch('http://localhost:3000/api/links', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(link),
-            });
-            return await response.json();
-        }
-
-        async function updateLink(id, link) {
-            const response = await fetch(`http://localhost:3000/api/links/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(link),
-            });
-            return await response.json();
-        }
-
-        async function deleteLink(id) {
-            const response = await fetch(`http://localhost:3000/api/links/${id}`, {
-                method: 'DELETE',
-            });
-            return await response.json();
-        }
-
-        function renderTileLinks(links) {
-            tileContainer.innerHTML = '';
-            links.forEach(link => {
-                const linkElement = document.createElement('div');
-                linkElement.className = 'link-tile';
-                linkElement.innerHTML = `
-                    <h3>${link.title}</h3>
-                    <a href="${link.url}" target="_blank">${link.url}</a>
-                    <div class="tags">${link.tags.map(tag => `<span class="tag">#${tag}</span>`).join(' ')}</div>
-                    <div class="actions">
-                        <button class="deleteBtn" data-id="${link.id}" title="Löschen"><i class="fas fa-trash-alt"></i></button>
-                        <button class="editBtn" data-id="${link.id}" title="Bearbeiten"><i class="fas fa-edit"></i></button>
-                        <button class="info-btn" data-id="${link.id}" title="Info"><i class="fas fa-info-circle"></i></button>
-                    </div>
-                `;
-                tileContainer.appendChild(linkElement);
-            });
-        }
-
-        function renderListLinks(links) {
-            listBody.innerHTML = '';
-            links.forEach(link => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${link.title}</td>
-                    <td><a href="${link.url}" target="_blank">${link.url}</a></td>
-                    <td>${link.tags.map(tag => `#${tag}`).join(' ')}</td>
-                    <td>
-                        <button class="deleteBtn" data-id="${link.id}" title="Löschen"><i class="fas fa-trash-alt"></i></button>
-                        <button class="editBtn" data-id="${link.id}" title="Bearbeiten"><i class="fas fa-edit"></i></button>
-                        <button class="info-btn" data-id="${link.id}" title="Info"><i class="fas fa-info-circle"></i></button>
-                    </td>
-                `;
-                listBody.appendChild(row);
-            });
-        }
-
-        function renderLinks(links) {
-            renderTileLinks(links);
-            renderListLinks(links);
-        }
-
-        function resetForm() {
-            linkForm.reset();
-            document.getElementById('linkId').value = '';
-            formTitle.textContent = 'Neuen Link hinzufügen';
-            submitBtn.innerHTML = '<i class="fas fa-save"></i> Speichern';
-        }
-
-        // Form submission handler
-        linkForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const id = document.getElementById('linkId').value;
-            const title = document.getElementById('linkTitle').value;
-            const url = document.getElementById('linkUrl').value;
-            const tags = document.getElementById('linkTags').value.split(',').map(tag => tag.trim());
-            const notes = document.getElementById('linkNotes').value;
-            
-            const linkData = { title, url, tags, notes };
-            
-            if (id) {
-                // Edit existing link
-                await updateLink(id, linkData);
-            } else {
-                // Add new link
-                await addLink(linkData);
-            }
-            
-            filterAndRenderLinks();
-            resetForm();
-            addLinkForm.style.display = 'none';
-            updateTagFilter();
-        });
-
-        // Event listeners for edit, delete, and info buttons
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('editBtn') || e.target.parentElement.classList.contains('editBtn')) {
-                const id = e.target.getAttribute('data-id') || e.target.parentElement.getAttribute('data-id');
-                editLink(id);
-            } else if (e.target.classList.contains('deleteBtn') || e.target.parentElement.classList.contains('deleteBtn')) {
-                const id = e.target.getAttribute('data-id') || e.target.parentElement.getAttribute('data-id');
-                deleteLink(id);
-            } else if (e.target.classList.contains('info-btn') || e.target.parentElement.classList.contains('info-btn')) {
-                const id = e.target.getAttribute('data-id') || e.target.parentElement.getAttribute('data-id');
-                showDetailedView(id);
-            }
-        });
-
-        async function editLink(id) {
-            const links = await fetchLinks();
-            const link = links.find(link => link.id === parseInt(id));
-            document.getElementById('linkId').value = link.id;
-            document.getElementById('linkTitle').value = link.title;
-            document.getElementById('linkUrl').value = link.url;
-            document.getElementById('linkTags').value = link.tags.join(', ');
-            document.getElementById('linkNotes').value = link.notes || '';
-            formTitle.textContent = 'Link bearbeiten';
-            submitBtn.innerHTML = '<i class="fas fa-save"></i> Aktualisieren';
-            addLinkForm.style.display = 'block';
-        }
-
-        async function deleteLink(id) {
-            await deleteLink(id);
-            filterAndRenderLinks();
-            updateTagFilter();
-        }
-
-        async function showDetailedView(id) {
-            const links = await fetchLinks();
-            const link = links.find(link => link.id === parseInt(id));
-            detailedViewTitle.textContent = link.title;
-            detailedViewContent.innerHTML = `
-                <p><strong>URL:</strong> <a href="${link.url}" target="_blank">${link.url}</a></p>
-                <p><strong>Tags:</strong> ${link.tags.map(tag => `#${tag}`).join(' ')}</p>
-                <p><strong>Notizen:</strong> ${link.notes || 'Keine Notizen vorhanden'}</p>
-                <img src="https://www.google.com/s2/favicons?domain=${link.url}" alt="Favicon" class="favicon">
-            `;
-            detailedViewModal.style.display = 'block';
-            editInDetailedViewBtn.setAttribute('data-id', id);
-        }
-
-        // Close modal when clicking on <span> (x)
-        document.querySelector('.close').onclick = function() {
-            detailedViewModal.style.display = 'none';
-        }
-
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            if (event.target == detailedViewModal) {
-                detailedViewModal.style.display = 'none';
-            }
-        }
-
-        // Edit in detailed view
-        editInDetailedViewBtn.onclick = function() {
-            const id = this.getAttribute('data-id');
-            editLink(id);
-            detailedViewModal.style.display = 'none';
-        }
-
-        // Search and filter functionality
-        async function filterAndRenderLinks() {
-            const links = await fetchLinks();
-            const searchTerm = searchInput.value.toLowerCase();
-            const selectedTag = tagFilter.value;
-
-            const filteredLinks = links.filter(link => {
-                const matchesSearch = link.title.toLowerCase().includes(searchTerm) ||
-                                      link.url.toLowerCase().includes(searchTerm) ||
-                                      link.notes.toLowerCase().includes(searchTerm);
-                const matchesTag = selectedTag === '' || link.tags.includes(selectedTag);
-                return matchesSearch && matchesTag;
-            });
-
-            renderLinks(filteredLinks);
-        }
-
-        searchInput.addEventListener('input', filterAndRenderLinks);
-        tagFilter.addEventListener('change', filterAndRenderLinks);
-
-        async function updateTagFilter() {
-            const links = await fetchLinks();
-            const allTags = new Set();
-            links.forEach(link => link.tags.forEach(tag => allTags.add(tag)));
-
-            tagFilter.innerHTML = '<option value="">Alle Tags</option>';
-            allTags.forEach(tag => {
-                const option = document.createElement('option');
-                option.value = tag;
-                option.textContent = `#${tag}`;
-                tagFilter.appendChild(option);
-            });
-        }
-
-        // Initial render and setup
-        async function init() {
-            await updateTagFilter();
-            await filterAndRenderLinks();
-        }
-
-        init();
-    </script>
+    <script src="js/app.js"></script>
 </body>
 </html>

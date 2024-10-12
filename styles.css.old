@@ -1,13 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
 
 :root {
-    --text-color: #a3a3a3;
-    --header-color: #ffffff;
-    /*--background-color: #181818;*/
-    --background-color: #111111;
+    --text-color: #333333;
+    --header-color: #444444;
+    --background-color: #f0f0f0;
     --highlight-color: #306dcb;
-    --tag-background: #333333;
-    --tag-color: #fff;
+    --tag-background: #e0e0e0;
+    --tag-color: #444444;
   }
 
 /* Basic styles for Link Dashboard */
@@ -16,6 +15,8 @@ body {
     margin: 0;
     padding: 20px;
     transition: background-color 0.3s, color 0.3s;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .container {
@@ -49,22 +50,22 @@ body {
     max-width: 500px;
     margin-right: 10px;
     padding: 8px;
-    padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: #ffffff;
 }
 
 #tagFilter {
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: white;
+    background-color: #ffffff;
 }
 
 /* Add Link Form styles */
 #addLinkForm {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
@@ -73,6 +74,7 @@ body {
 #addLinkForm h2 {
     margin-top: 0;
     margin-bottom: 15px;
+    color: var(--header-color);
 }
 
 #linkForm {
@@ -83,8 +85,9 @@ body {
 #linkForm input, #linkForm textarea {
     margin-bottom: 10px;
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: #ffffff;
 }
 
 #linkForm textarea {
@@ -107,7 +110,7 @@ body {
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 4px;
-    background-color: #f7f7f7;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column; 
     height: 170px; /* Fixed height for consistency */
@@ -121,6 +124,7 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: var(--header-color);
 }
 
 .link-tile a {
@@ -150,8 +154,8 @@ body {
     font-size: 0.8em;
     padding: 2px 4px;
     border-radius: 3px;
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: var(--tag-background);
+    color: var(--tag-color);
 }
 
 .link-tile .actions {
@@ -174,12 +178,13 @@ table {
 th, td {
     text-align: left;
     padding: 12px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ccc;
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #e6e6e6;
     font-weight: bold;
+    color: var(--header-color);
 }
 
 /* Modal styles */
@@ -196,10 +201,10 @@ th {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #ffffff;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid #ccc;
     width: 80%;
     max-width: 600px;
     border-radius: 8px;
@@ -207,7 +212,7 @@ th {
 }
 
 .close {
-    color: #aaa;
+    color: #888;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -216,7 +221,7 @@ th {
 
 .close:hover,
 .close:focus {
-    color: #000;
+    color: #555;
     text-decoration: none;
     cursor: pointer;
 }
@@ -273,7 +278,7 @@ body.dark-mode .close:focus {
 /* Button styles */
 button {
     padding: 8px 12px;
-    background-color: #007bff;
+    background-color: #4a90e2;
     color: white;
     border: none;
     border-radius: 5px;
@@ -282,7 +287,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #3a78c2;
     transform: translateY(-1px);
 }
 
@@ -319,7 +324,7 @@ body.dark-mode .info-btn:hover {
 
 /* Link styles */
 a {
-    color: #007bff;
+    color: #4a90e2;
     text-decoration: none;
 }
 
@@ -328,7 +333,7 @@ a:hover {
 }
 
 body.dark-mode a {
-    color: #4da6ff;
+    color: #6ba5e7;
 }
 
 /* Icon button styles */
@@ -337,12 +342,12 @@ body.dark-mode a {
     border: none;
     font-size: 1.2em;
     padding: 8px;
-    color: rgba(0, 123, 255, 0.7);
+    color: rgba(74, 144, 226, 0.7);
     transition: color 0.3s, transform 0.1s;
 }
 
 .controls button:hover {
-    color: rgba(0, 86, 179, 0.9);
+    color: rgba(58, 120, 194, 0.9);
     transform: translateY(-1px);
 }
 
@@ -351,11 +356,11 @@ body.dark-mode a {
 }
 
 body.dark-mode .controls button {
-    color: rgba(77, 166, 255, 0.7);
+    color: rgba(107, 165, 231, 0.7);
 }
 
 body.dark-mode .controls button:hover {
-    color: rgba(121, 188, 255, 0.9);
+    color: rgba(131, 180, 236, 0.9);
 }
 
 /* Ensure contrast for placeholder text in dark mode */
@@ -374,6 +379,7 @@ body.dark-mode textarea::placeholder {
 
 .header h1 {
     margin: 0;
+    color: var(--header-color);
 }
 
 #darkModeToggle {
@@ -390,4 +396,3 @@ body.dark-mode textarea::placeholder {
 #viewToggle {
     margin-left: 10px;
 }
-
