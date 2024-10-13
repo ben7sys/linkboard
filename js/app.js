@@ -109,19 +109,19 @@ function renderTileLinks(links) {
         linkElement.innerHTML = `
             <div class="title-container">
                 <h3 class="editable" data-field="title">${link.title}</h3>
-                <button class="edit-title-btn" title="Titel bearbeiten"><i class="fas fa-edit"></i></button>
+                <button class="edit-title-btn" title="Titel bearbeiten"><i class="fa-solid fa-pencil"></i></button>
             </div>
             <div class="url-container">
                 <a href="${link.url}" target="_blank" class="editable" data-field="url">${link.url}</a>
-                <button class="edit-url-btn" title="URL bearbeiten"><i class="fas fa-edit"></i></button>
+                <button class="edit-url-btn" title="URL bearbeiten"><i class="fa-solid fa-pencil"></i></button>
             </div>
             <div class="tags-container">
                 <div class="tags">${renderTags(link.tags)}</div>
-                <button class="edit-tags-btn" title="Tags bearbeiten"><i class="fas fa-edit"></i></button>
+                <button class="edit-tags-btn" title="Tags bearbeiten"><i class="fa-solid fa-pencil"></i></button>
             </div>
             <div class="notes-container">
                 <div class="notes editable" data-field="notes">${link.notes || ''}</div>
-                <button class="edit-notes-btn" title="Notizen bearbeiten"><i class="fas fa-edit"></i></button>
+                <button class="edit-notes-btn" title="Notizen bearbeiten"><i class="fa-solid fa-pencil"></i></button>
             </div>
             <div class="actions">
                 <button class="deleteBtn" title="Löschen"><i class="fas fa-trash-alt"></i></button>
@@ -392,6 +392,7 @@ let allTags = [];
 async function updateAllTags() {
     const links = await fetchLinks();
     allTags = Array.from(new Set(links.flatMap(link => link.tags)));
+    showSuggestions(allTags); // Ensure suggestions are shown after updating
 }
 
 tagInput.addEventListener('input', function() {

@@ -302,7 +302,7 @@
     margin-left: 5px;
     cursor: pointer;
     transition: color 0.3s;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(131, 131, 131, 0.5);
 }
 
 .edit-title-btn:hover, .edit-url-btn:hover, .edit-tags-btn:hover, .edit-notes-btn:hover {
