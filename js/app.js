@@ -36,8 +36,8 @@ function loadDarkModePreference() {
 function setDarkMode(isDark) {
     isDarkMode = isDark;
     document.body.classList.toggle('dark-mode', isDark);
+    document.body.classList.toggle('light-mode', !isDark);
     darkModeToggleBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    darkModeToggleBtn.title = isDark ? 'Zum Light Mode' : 'Zum Dark Mode';
     saveDarkModePreference(isDark);
 }
 

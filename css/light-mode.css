@@ -1,69 +1,69 @@
-body {
+body.light-mode {
     background-color: #ffffff;
     color: #333333;
 }
 
-#addLinkForm,
-.link-tile,
-th,
-td,
-.modal-content {
-    border-color: #dddddd;
+body.light-mode #addLinkForm,
+body.light-mode .link-tile,
+body.light-mode th,
+body.light-mode td,
+body.light-mode .modal-content {
     background-color: #f9f9f9;
+    border-color: #dddddd;
 }
 
-#linkForm input,
-#linkForm textarea,
-#searchInput,
-#tagFilter {
+body.light-mode #linkForm input,
+body.light-mode #linkForm textarea,
+body.light-mode #searchInput,
+body.light-mode #tagFilter {
     background-color: #ffffff;
     color: #333333;
     border-color: #cccccc;
 }
 
-th {
+body.light-mode th {
     background-color: #f2f2f2;
 }
 
-.link-tile .tag {
+body.light-mode .link-tile .tag {
     background-color: #e0e0e0;
     color: #333333;
 }
 
-.close {
+body.light-mode .close {
     color: #666666;
 }
 
-.close:hover,
-.close:focus {
+body.light-mode .close:hover,
+body.light-mode .close:focus {
     color: #333333;
 }
 
-.editBtn,
-.deleteBtn,
-.info-btn {
+body.light-mode .editBtn,
+body.light-mode .deleteBtn,
+body.light-mode .info-btn {
     color: rgba(0, 0, 0, 0.5);
 }
 
-.editBtn:hover,
-.deleteBtn:hover,
-.info-btn:hover {
+body.light-mode .editBtn:hover,
+body.light-mode .deleteBtn:hover,
+body.light-mode .info-btn:hover {
     color: rgba(0, 0, 0, 0.8);
 }
 
-a {
+body.light-mode a {
     color: #0056b3;
 }
 
-.controls button {
+body.light-mode .controls button {
     color: rgba(0, 86, 179, 0.7);
 }
 
-.controls button:hover {
+body.light-mode .controls button:hover {
     color: rgba(0, 86, 179, 0.9);
 }
 
-input::placeholder,
-textarea::placeholder {
+body.light-mode input::placeholder,
+body.light-mode textarea::placeholder {
     color: #999999;
 }
