@@ -264,7 +264,7 @@
 }
 
 .editable:hover, .editable:focus {
-    border-color: #007bff;
+    border-color: #dbdbdb;
     outline: none;
 }
 
