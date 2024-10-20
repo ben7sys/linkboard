@@ -18,6 +18,9 @@ const tagFilter = document.getElementById('tagFilter');
 const tagInput = document.getElementById('tagInput');
 const tagList = document.getElementById('tagList');
 const tagSuggestions = document.getElementById('tagSuggestions');
+const popupOverlay = document.createElement('div');
+popupOverlay.id = 'popupOverlay';
+document.body.appendChild(popupOverlay);
 let isTileView = true;
 let isDarkMode = true;
 
@@ -61,8 +64,16 @@ darkModeToggleBtn.addEventListener('click', () => {
 
 // Show/hide add link form
 showAddLinkFormBtn.addEventListener('click', () => {
-    addLinkForm.style.display = addLinkForm.style.display === 'none' ? 'block' : 'none';
-    resetForm();
+    const isVisible = addLinkForm.style.display === 'block';
+    addLinkForm.style.display = isVisible ? 'none' : 'block';
+    popupOverlay.style.display = isVisible ? 'none' : 'block';
+    if (!isVisible) resetForm();
+});
+
+// Hide popup when clicking on overlay
+popupOverlay.addEventListener('click', () => {
+    addLinkForm.style.display = 'none';
+    popupOverlay.style.display = 'none';
 });
 
 // API functions
@@ -213,6 +224,7 @@ linkForm.addEventListener('submit', async function(e) {
     filterAndRenderLinks();
     resetForm();
     addLinkForm.style.display = 'none';
+    popupOverlay.style.display = 'none';
     updateTagFilter();
 });
 
