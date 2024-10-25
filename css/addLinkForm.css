@@ -1,0 +1,40 @@
+/* Add Link Form styles */
+#addLinkForm {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: none; /* Initially hidden */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#addLinkForm h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+#linkForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#linkForm input, #linkForm textarea {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#linkForm textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#linkForm button {
+    align-self: flex-start;
+}

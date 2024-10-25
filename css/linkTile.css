@@ -1,0 +1,76 @@
+/* Tile styles */
+.link-tile {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column; 
+    height: 220px; /* Increased height to accommodate notes */
+}
+
+.link-tile h3 {
+    margin-top: 0;
+    margin-bottom: 4px;
+    font-size: 1.2em;
+    height: 1.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.link-tile a {
+    display: block;
+    margin-bottom: 10px;
+    word-break: break-all;
+    font-size: 0.9em;
+    height: 1.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.link-tile .title-container,
+.link-tile .url-container,
+.link-tile .tags-container,
+.link-tile .notes-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
+
+.link-tile .tags {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    overflow: hidden;
+    height: 1.5em;
+}
+
+.link-tile .tag {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 0.8em;
+    padding: 2px 4px;
+    border-radius: 3px;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.link-tile .notes {
+    flex-grow: 1;
+    margin-top: 5px;
+    font-size: 0.9em;
+    height: 3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.link-tile .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    height: 2em;
+}

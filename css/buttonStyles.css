@@ -1,0 +1,82 @@
+/* Button styles */
+.controls button {
+    font-size: 1.2em;
+    padding: 8px 12px;
+}
+
+#searchInput {
+    flex-grow: 1;
+    max-width: 500px;
+    margin-right: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#tagFilter {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.editBtn, .deleteBtn, .info-btn, .saveBtn, .edit-title-btn, .edit-url-btn, .edit-tags-btn, .edit-notes-btn {
+    background: none;
+    border: none;
+    font-size: 1.1em;
+    padding: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.1s;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.editBtn:hover, .deleteBtn:hover, .info-btn:hover, .saveBtn:hover, 
+.edit-title-btn:hover, .edit-url-btn:hover, .edit-tags-btn:hover, .edit-notes-btn:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.controls button {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    padding: 8px;
+    color: rgba(0, 123, 255, 0.7);
+    transition: color 0.3s, transform 0.1s;
+}
+
+.controls button:hover {
+    color: rgba(0, 86, 179, 0.9);
+    transform: translateY(-1px);
+}
+
+.controls button:active {
+    transform: translateY(1px);
+}
+
+#darkModeToggle {
+    font-size: 0.8em;
+    padding: 4px 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.favicon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
