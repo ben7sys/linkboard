@@ -1,7 +1,7 @@
 // Render Module: Handles rendering of links
 
 import { tileContainer, listBody } from './ui.js';
-import { addEditButtonListeners } from './ui.js';
+import { updateLink } from './api.js';
 
 // Render links in tile view
 export function renderTileLinks(links) {
@@ -13,24 +13,18 @@ export function renderTileLinks(links) {
         linkElement.innerHTML = `
             <div class="title-container">
                 <h3 class="editable" data-field="title">${link.title}</h3>
-                <button class="edit-title-btn" title="Titel bearbeiten"><i class="fa-solid fa-pencil"></i></button>
             </div>
             <div class="url-container">
                 <a href="${link.url}" target="_blank" class="editable" data-field="url">${link.url}</a>
-                <button class="edit-url-btn" title="URL bearbeiten"><i class="fa-solid fa-pencil"></i></button>
             </div>
             <div class="tags-container">
-                <div class="tags">${renderTags(link.tags)}</div>
-                <button class="edit-tags-btn" title="Tags bearbeiten"><i class="fa-solid fa-pencil"></i></button>
+                <div class="tags editable" data-field="tags">${renderTags(link.tags)}</div>
             </div>
             <div class="notes-container">
                 <div class="notes editable" data-field="notes">${link.notes || ''}</div>
-                <button class="edit-notes-btn" title="Notizen bearbeiten"><i class="fa-solid fa-pencil"></i></button>
             </div>
             <div class="actions">
                 <button class="deleteBtn" title="Löschen"><i class="fas fa-trash-alt"></i></button>
-                <button class="saveBtn" title="Speichern"><i class="fas fa-save"></i></button>
-                <button class="info-btn" title="Info"><i class="fas fa-info-circle"></i></button>
             </div>
         `;
         tileContainer.appendChild(linkElement);
@@ -47,31 +41,25 @@ export function renderListLinks(links) {
             <td>
                 <div class="title-container">
                     <span class="editable" data-field="title">${link.title}</span>
-                    <button class="edit-title-btn" title="Titel bearbeiten"><i class="fas fa-edit"></i></button>
                 </div>
             </td>
             <td>
                 <div class="url-container">
                     <a href="${link.url}" target="_blank" class="editable" data-field="url">${link.url}</a>
-                    <button class="edit-url-btn" title="URL bearbeiten"><i class="fas fa-edit"></i></button>
                 </div>
             </td>
             <td>
                 <div class="tags-container">
-                    <div class="tags">${renderTags(link.tags)}</div>
-                    <button class="edit-tags-btn" title="Tags bearbeiten"><i class="fas fa-edit"></i></button>
+                    <div class="tags editable" data-field="tags">${renderTags(link.tags)}</div>
                 </div>
             </td>
             <td>
                 <div class="notes-container">
                     <div class="notes editable" data-field="notes">${link.notes || ''}</div>
-                    <button class="edit-notes-btn" title="Notizen bearbeiten"><i class="fas fa-edit"></i></button>
                 </div>
             </td>
             <td>
                 <button class="deleteBtn" title="Löschen"><i class="fas fa-trash-alt"></i></button>
-                <button class="saveBtn" title="Speichern"><i class="fas fa-save"></i></button>
-                <button class="info-btn" title="Info"><i class="fas fa-info-circle"></i></button>
             </td>
         `;
         listBody.appendChild(row);
@@ -87,5 +75,34 @@ export function renderTags(tags) {
 export function renderLinks(links) {
     renderTileLinks(links);
     renderListLinks(links);
-    addEditButtonListeners();
+    addEditableListeners();
+}
+
+// Add event listeners for editable elements
+function addEditableListeners() {
+    document.querySelectorAll('.editable').forEach(element => {
+        element.addEventListener('dblclick', (event) => {
+            event.target.contentEditable = true;
+            event.target.focus();
+        });
+
+        element.addEventListener('blur', async (event) => {
+            event.target.contentEditable = false;
+            const field = event.target.dataset.field;
+            const value = event.target.innerText;
+            const id = event.target.closest('[data-id]').dataset.id;
+            await saveChanges(id, field, value);
+        });
+    });
+}
+
+// Save changes function
+async function saveChanges(id, field, value) {
+    try {
+        const link = { [field]: value };
+        await updateLink(id, link);
+        console.log(`Changes saved for ID: ${id}, Field: ${field}, Value: ${value}`);
+    } catch (error) {
+        console.error('Error saving changes:', error);
+    }
 }
