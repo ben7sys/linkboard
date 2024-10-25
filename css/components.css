@@ -57,19 +57,31 @@
 }
 
 .tag {
-    background-color: #e0e0e0;
+    background: linear-gradient(135deg, #f0f0f0, #d0d0d0);
     color: #333;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 0.9em;
-    display: flex;
-    align-items: center;
+    width: 20px; /* Adjust size as needed */
+    height: 20px; /* Adjust size as needed */
+    display: inline-block;
+    position: relative;
+    margin: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.tag:hover {
+    background: linear-gradient(135deg, #e0e0e0, #b0b0b0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .tag .remove-tag {
-    margin-left: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    margin-left: 0;
     cursor: pointer;
     font-weight: bold;
+    font-size: 0.8em;
 }
 
 #tagInput {
