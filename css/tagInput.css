@@ -1,92 +1,24 @@
-/* Tag Input Container styles */
-#tagInputContainer {
+/* Styles for the tag list */
+.tag-list {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 8px;
-    margin-bottom: 12px;
-    background-color: #f9f9f9;
+    margin: 10px 0;
 }
 
-#tagList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-/* Tag styles */
-.tag {
-    background-color: #333;
-    color: #fff;
-    width: auto;
-    padding: 6px 12px;
-    display: inline-block;
-    position: relative;
-    margin: 4px;
-    border-radius: 12px;
-    font-size: 0.9em;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.tag:nth-child(odd) {
-    background-color: #ff9a9e;
-}
-
-.tag:nth-child(even) {
-    background-color: #fad0c4;
-}
-
-.tag:hover {
-    background-color: #444;
-    transform: scale(1.1); /* Slightly enlarge on hover */
-}
-
-/* Tag Cloud styles */
-.tag-cloud .tag {
-    font-size: calc(0.8em + 0.2 * var(--tag-frequency)); /* Adjust size based on frequency */
-    transition: font-size 0.3s ease;
-}
-
-#tagInput {
-    flex-grow: 1;
-    border: none;
-    outline: none;
-    padding: 6px;
-    font-size: 1em;
-    background-color: transparent;
-}
-
-/* Tag auto-suggestion styles */
-#tagSuggestions {
-    position: absolute;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-top: none;
-    max-height: 150px;
-    overflow-y: auto;
-    width: 100%;
-    display: none;
-    box-sizing: border-box;
-    z-index: 10;
-}
-
-.tag-suggestion {
-    padding: 0.6em 1.2em;
+.tag-list .tag {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
     cursor: pointer;
-    font-size: 1em;
-    color: #333;
+    transition: background-color 0.3s;
 }
 
-.tag-suggestion:hover {
-    background-color: #e0e0e0;
+.tag-list .tag:hover {
+    background-color: #d0d0d0;
 }
 
-/* Responsive styles */
-@media (max-width: 600px) {
-    #tagSuggestions {
-        width: 100%;
-    }
+.tag-list .tag.active {
+    background-color: #007bff;
+    color: white;
 }

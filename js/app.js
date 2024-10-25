@@ -9,7 +9,32 @@ import { resetForm, updateTagFilter, updateAllTags } from './form.js';
 async function init() {
     await updateAllTags();
     await updateTagFilter();
+    await populateTagList();
     await filterAndRenderLinks();
+}
+
+// Populate the tag list
+async function populateTagList() {
+    const tagListElement = document.getElementById('tagList');
+    const links = await fetchLinks();
+    const allTags = new Set();
+
+    links.forEach(link => {
+        link.tags.forEach(tag => allTags.add(tag));
+    });
+
+    tagListElement.innerHTML = ''; // Clear existing tags
+
+    allTags.forEach(tag => {
+        const tagElement = document.createElement('span');
+        tagElement.className = 'tag';
+        tagElement.textContent = tag;
+        tagElement.addEventListener('click', () => {
+            tagFilter.value = tag;
+            filterAndRenderLinks();
+        });
+        tagListElement.appendChild(tagElement);
+    });
 }
 
 // Form submission handler
@@ -36,6 +61,7 @@ addLinkForm.addEventListener('submit', async function(e) {
     addLinkForm.style.display = 'none';
     popupOverlay.style.display = 'none';
     updateTagFilter();
+    populateTagList(); // Update tag list after adding a new link
 });
 
 // Event listeners for edit, delete, save, and info buttons
@@ -52,6 +78,7 @@ document.addEventListener('click', async function(e) {
         await deleteLink(id);
         filterAndRenderLinks();
         updateTagFilter();
+        populateTagList(); // Update tag list after deleting a link
     } else if (target.classList.contains('saveBtn')) {
         await saveInlineEdit(id);
     } else if (target.classList.contains('info-btn')) {

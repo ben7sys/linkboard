@@ -20,6 +20,9 @@ export function renderTileLinks(links) {
             <div class="notes-container">
                 <div class="notes editable" data-field="notes">${link.notes || ''}</div>
             </div>
+            <div class="tags-container">
+                ${link.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
             <div class="actions">
                 <button class="deleteBtn" title="Löschen"><i class="fas fa-trash-alt"></i></button>
             </div>
@@ -48,6 +51,11 @@ export function renderListLinks(links) {
             <td>
                 <div class="notes-container">
                     <div class="notes editable" data-field="notes">${link.notes || ''}</div>
+                </div>
+            </td>
+            <td>
+                <div class="tags-container">
+                    ${link.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                 </div>
             </td>
             <td>
