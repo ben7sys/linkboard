@@ -17,9 +17,6 @@ export function renderTileLinks(links) {
             <div class="url-container">
                 <a href="${link.url}" target="_blank" class="editable" data-field="url">${link.url}</a>
             </div>
-            <div class="tags-container">
-                <div class="tags editable" data-field="tags">${renderTags(link.tags)}</div>
-            </div>
             <div class="notes-container">
                 <div class="notes editable" data-field="notes">${link.notes || ''}</div>
             </div>
@@ -49,11 +46,6 @@ export function renderListLinks(links) {
                 </div>
             </td>
             <td>
-                <div class="tags-container">
-                    <div class="tags editable" data-field="tags">${renderTags(link.tags)}</div>
-                </div>
-            </td>
-            <td>
                 <div class="notes-container">
                     <div class="notes editable" data-field="notes">${link.notes || ''}</div>
                 </div>
@@ -64,30 +56,6 @@ export function renderListLinks(links) {
         `;
         listBody.appendChild(row);
     });
-}
-
-// Render tags
-export function renderTags(tags) {
-    const tagElements = tags.map(tag => {
-        const tagElement = document.createElement('span');
-        tagElement.className = 'tag';
-        tagElement.textContent = tag;
-
-        // Create a remove button
-        const removeBtn = document.createElement('span');
-        removeBtn.className = 'remove-tag';
-        removeBtn.textContent = '×';
-        removeBtn.onclick = function() {
-            tagElement.remove();
-        };
-
-        // Append the remove button to the tag element
-        tagElement.appendChild(removeBtn);
-
-        return tagElement.outerHTML;
-    });
-
-    return tagElements.join('');
 }
 
 // Render all links

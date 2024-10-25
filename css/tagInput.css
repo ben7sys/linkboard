@@ -21,14 +21,14 @@
     background-color: #333;
     color: #fff;
     width: auto;
-    padding: 6px 12px; /* Removed right padding for "x" button */
+    padding: 6px 12px;
     display: inline-block;
     position: relative;
     margin: 4px;
     border-radius: 12px;
     font-size: 0.9em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .tag:nth-child(odd) {
@@ -40,7 +40,14 @@
 }
 
 .tag:hover {
-    background-color: #444; /* Subtle color change on hover */
+    background-color: #444;
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Tag Cloud styles */
+.tag-cloud .tag {
+    font-size: calc(0.8em + 0.2 * var(--tag-frequency)); /* Adjust size based on frequency */
+    transition: font-size 0.3s ease;
 }
 
 #tagInput {

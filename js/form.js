@@ -1,9 +1,7 @@
-// Form and Tag Module: Handles form and tag management
+// Form Module: Handles form management
 
-import { linkForm, formTitle, submitBtn, tagList, tagInput, tagSuggestions } from './ui.js';
+import { linkForm, formTitle, submitBtn } from './ui.js';
 import { fetchLinks } from './api.js';
-
-let allTags = []; // Declare allTags variable
 
 // Reset the form
 export function resetForm() {
@@ -11,28 +9,6 @@ export function resetForm() {
     document.getElementById('linkId').value = '';
     formTitle.textContent = 'Neuen Link hinzufügen';
     submitBtn.innerHTML = '<i class="fas fa-save"></i> Speichern';
-    tagList.innerHTML = '';
-}
-
-// Add a tag to the list
-export function addTag(tag) {
-    const tagElement = document.createElement('span');
-    tagElement.className = 'tag';
-    tagElement.textContent = tag;
-
-    // Create a remove button
-    const removeBtn = document.createElement('span');
-    removeBtn.className = 'remove-tag';
-    removeBtn.textContent = 'x';
-    removeBtn.onclick = function() {
-        tagList.removeChild(tagElement);
-    };
-
-    // Append the remove button to the tag element
-    tagElement.appendChild(removeBtn);
-
-    // Append the tag element to the tag list
-    tagList.appendChild(tagElement);
 }
 
 // Update the tag filter options
@@ -53,28 +29,10 @@ export async function updateTagFilter() {
 // Update all tags for auto-suggestion
 export async function updateAllTags() {
     const links = await fetchLinks();
-    allTags = Array.from(new Set(links.flatMap(link => link.tags)));
-    showSuggestions(allTags); // Ensure suggestions are shown after updating
+    const allTags = Array.from(new Set(links.flatMap(link => link.tags)));
+    // Removed showSuggestions call
 }
 
-// Show tag suggestions
-export function showSuggestions(suggestions) {
-    tagSuggestions.innerHTML = '';
-    suggestions.forEach(tag => {
-        const suggestion = document.createElement('div');
-        suggestion.className = 'tag-suggestion';
-        suggestion.textContent = tag;
-        suggestion.onclick = function() {
-            addTag(tag);
-            tagInput.value = '';
-            hideSuggestions();
-        };
-        tagSuggestions.appendChild(suggestion);
-    });
-    tagSuggestions.style.display = 'block';
-}
+// Removed showSuggestions function
 
-// Hide tag suggestions
-export function hideSuggestions() {
-    tagSuggestions.style.display = 'none';
-}
+// Removed hideSuggestions function

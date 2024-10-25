@@ -16,13 +16,12 @@ export const detailedViewTitle = document.getElementById('detailedViewTitle');
 export const detailedViewContent = document.getElementById('detailedViewContent');
 export const editInDetailedViewBtn = document.getElementById('editInDetailedView');
 export const searchInput = document.getElementById('searchInput');
-export const tagFilter = document.getElementById('tagFilter');
-export const tagInput = document.getElementById('tagInput');
-export const tagList = document.getElementById('tagList');
-export const tagSuggestions = document.getElementById('tagSuggestions');
+export const tagFilter = document.getElementById('tagFilter'); // Export tagFilter
 export const popupOverlay = document.createElement('div');
 popupOverlay.id = 'popupOverlay';
 document.body.appendChild(popupOverlay);
+
+import { resetForm } from './form.js'; // Import resetForm
 
 let isTileView = true;
 let isDarkMode = true;

@@ -33,14 +33,12 @@
                 <input type="hidden" id="linkId">
                 <input type="text" id="linkTitle" placeholder="Titel" required>
                 <input type="url" id="linkUrl" placeholder="URL" required>
-                <div id="tagInputContainer">
-                    <div id="tagList"></div>
-                    <input type="text" id="tagInput" placeholder="Neuen Tag hinzufügen">
-                    <div id="tagSuggestions"></div>
-                </div>
                 <textarea id="linkNotes" placeholder="Notizen"></textarea>
                 <button type="submit" id="submitBtn"><i class="fas fa-save"></i> Speichern</button>
             </form>
+        </div>
+        <div id="tagSuggestions" style="display: none;">
+            <!-- Tag suggestions will be dynamically added here -->
         </div>
         <div id="tileContainer">
             <!-- Tile view content will be dynamically added here -->
