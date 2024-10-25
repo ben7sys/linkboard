@@ -68,7 +68,26 @@ export function renderListLinks(links) {
 
 // Render tags
 export function renderTags(tags) {
-    return tags.map(tag => `<span class="tag">${tag}<span class="remove-tag">×</span></span>`).join('');
+    const tagElements = tags.map(tag => {
+        const tagElement = document.createElement('span');
+        tagElement.className = 'tag';
+        tagElement.textContent = tag;
+
+        // Create a remove button
+        const removeBtn = document.createElement('span');
+        removeBtn.className = 'remove-tag';
+        removeBtn.textContent = '×';
+        removeBtn.onclick = function() {
+            tagElement.remove();
+        };
+
+        // Append the remove button to the tag element
+        tagElement.appendChild(removeBtn);
+
+        return tagElement.outerHTML;
+    });
+
+    return tagElements.join('');
 }
 
 // Render all links

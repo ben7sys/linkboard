@@ -3,77 +3,81 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
-    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 12px;
+    background-color: #f9f9f9;
 }
 
 #tagList {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 8px;
 }
 
+/* Tag styles */
 .tag {
-    background: linear-gradient(135deg, #f0f0f0, #d0d0d0);
-    color: #333;
-    width: 20px; /* Adjust size as needed */
-    height: 20px; /* Adjust size as needed */
+    background-color: #333;
+    color: #fff;
+    width: auto;
+    padding: 6px 12px; /* Removed right padding for "x" button */
     display: inline-block;
     position: relative;
-    margin: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s, box-shadow 0.3s;
+    margin: 4px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background 0.3s ease;
+}
+
+.tag:nth-child(odd) {
+    background-color: #ff9a9e;
+}
+
+.tag:nth-child(even) {
+    background-color: #fad0c4;
 }
 
 .tag:hover {
-    background: linear-gradient(135deg, #e0e0e0, #b0b0b0);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.tag .remove-tag {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    margin-left: 0;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 0.8em;
+    background-color: #444; /* Subtle color change on hover */
 }
 
 #tagInput {
     flex-grow: 1;
     border: none;
     outline: none;
-    padding: 5px;
-    font-size: 0.9em;
+    padding: 6px;
+    font-size: 1em;
+    background-color: transparent;
 }
 
 /* Tag auto-suggestion styles */
 #tagSuggestions {
     position: absolute;
-    background-color: white;
-    border: 1px solid #ddd;
+    background-color: #fff;
+    border: 1px solid #ccc;
     border-top: none;
     max-height: 150px;
     overflow-y: auto;
     width: 100%;
     display: none;
     box-sizing: border-box;
+    z-index: 10;
 }
 
 .tag-suggestion {
-    padding: 0.5em 1em;
+    padding: 0.6em 1.2em;
     cursor: pointer;
     font-size: 1em;
+    color: #333;
 }
 
 .tag-suggestion:hover {
-    background-color: #f0f0f0;
+    background-color: #e0e0e0;
 }
 
+/* Responsive styles */
 @media (max-width: 600px) {
     #tagSuggestions {
         width: 100%;

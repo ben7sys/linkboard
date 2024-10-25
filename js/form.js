@@ -19,13 +19,19 @@ export function addTag(tag) {
     const tagElement = document.createElement('span');
     tagElement.className = 'tag';
     tagElement.textContent = tag;
+
+    // Create a remove button
     const removeBtn = document.createElement('span');
     removeBtn.className = 'remove-tag';
-    removeBtn.textContent = '×';
+    removeBtn.textContent = 'x';
     removeBtn.onclick = function() {
         tagList.removeChild(tagElement);
     };
+
+    // Append the remove button to the tag element
     tagElement.appendChild(removeBtn);
+
+    // Append the tag element to the tag list
     tagList.appendChild(tagElement);
 }
 
