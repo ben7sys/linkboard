@@ -133,4 +133,4 @@ Potential improvements for future versions:
 
 ## License
 
-ISC License
+GPLv3
