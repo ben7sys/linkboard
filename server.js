@@ -36,15 +36,27 @@ app.get('/api/links', (req, res) => {
       res.status(500).json({ error: err.message });
       return;
     }
-    res.json(rows.map(row => ({...row, tags: row.tags.split(',')})));
+    res.json(rows.map(row => ({
+      ...row, 
+      tags: row.tags ? row.tags.split(',').filter(tag => tag.trim() !== '') : []
+    })));
   });
 });
 
 // Add a new link
 app.post('/api/links', (req, res) => {
   const { title, url, tags, notes } = req.body;
+  
+  // Input validation
+  if (!title || !url) {
+    res.status(400).json({ error: 'Title and URL are required' });
+    return;
+  }
+  
+  const tagsString = Array.isArray(tags) ? tags.filter(tag => tag.trim() !== '').join(',') : '';
+  
   db.run(`INSERT INTO links (title, url, tags, notes) VALUES (?, ?, ?, ?)`,
-    [title, url, tags.join(','), notes],
+    [title, url, tagsString, notes || ''],
     function(err) {
       if (err) {
         res.status(500).json({ error: err.message });
@@ -58,8 +70,17 @@ app.post('/api/links', (req, res) => {
 // Update a link
 app.put('/api/links/:id', (req, res) => {
   const { title, url, tags, notes } = req.body;
+  
+  // Input validation
+  if (!title || !url) {
+    res.status(400).json({ error: 'Title and URL are required' });
+    return;
+  }
+  
+  const tagsString = Array.isArray(tags) ? tags.filter(tag => tag.trim() !== '').join(',') : '';
+  
   db.run(`UPDATE links SET title = ?, url = ?, tags = ?, notes = ? WHERE id = ?`,
-    [title, url, tags.join(','), notes, req.params.id],
+    [title, url, tagsString, notes || '', req.params.id],
     function(err) {
       if (err) {
         res.status(500).json({ error: err.message });
