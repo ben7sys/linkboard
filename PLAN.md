@@ -95,13 +95,13 @@ Hier ist eine detaillierte Planung für das One-Page-Dashboard-Projekt:
 ### **3. Datenstruktur und Speicherung**
    - **Datenstruktur**:
      - Ein Link-Objekt enthält folgende Felder:
-       - id: Eindeutige Identifikation.
-       - url: Die URL des Links.
-       - title: Der Titel des Links.
-       - description: Beschreibung des Links.
-       - tags: Eine Liste von Tags, die dem Link zugewiesen sind.
-       - favicon: URL des Favicons.
-       - notes: Zusätzliche Notizen oder Informationen zum Link.
+       - `id`: Eindeutige Identifikation.
+       - `url`: Die URL des Links.
+       - `title`: Der Titel des Links.
+       - `description`: Beschreibung des Links.
+       - `tags`: Eine Liste von Tags, die dem Link zugewiesen sind.
+       - `favicon`: URL des Favicons.
+       - `notes`: Zusätzliche Notizen oder Informationen zum Link.
    - **Speicherlösung**:
      - **SQLite** wird zur Speicherung von Links genutzt, um mit großen Mengen (10.000+) effizient umzugehen. Die Datenbank wird lokal über eine Backend-API angebunden.
      - **API-Schnittstellen** (Node.js, PHP oder Python Flask):
@@ -112,7 +112,7 @@ Hier ist eine detaillierte Planung für das One-Page-Dashboard-Projekt:
 
 ### **4. Backend-Integration (SQLite)**
    - **SQLite-Datenbank**:
-     - Tabelle links, die alle Link-Daten speichert (id, title, url, description, tags, favicon, notes).
+     - Tabelle `links`, die alle Link-Daten speichert (id, title, url, description, tags, favicon, notes).
    - **API-Entwicklung**:
      - Verwende einfache RESTful Endpunkte, um das Speichern, Abrufen und Bearbeiten der Links zu ermöglichen.
      - Das Backend verarbeitet die Anfrage, speichert die Daten in SQLite und sendet die aktualisierten Daten an das Frontend.
@@ -148,4 +148,3 @@ Hier ist eine detaillierte Planung für das One-Page-Dashboard-Projekt:
    4. **Such- und Filterfunktionen implementieren**.
    5. **Optimierung und Erweiterung** (z. B. Favoriten, Tag-Management, Mobile Design).
 
-Dieser Plan gibt dir eine klare Roadmap für die Umsetzung des Projekts, wobei die grundlegende Funktionalität zuerst hergestellt wird, bevor du schrittweise die Features erweiterst.
