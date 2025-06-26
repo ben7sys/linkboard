@@ -31,19 +31,41 @@
             <h2 id="formTitle">Neuen Link hinzufügen</h2>
             <form id="linkForm">
                 <input type="hidden" id="linkId">
-                <input type="text" id="linkTitle" placeholder="Titel" required>
-                <input type="url" id="linkUrl" placeholder="URL" required>
-                <div id="availableTags">
-                    <h4>Verfügbare Tags:</h4>
-                    <div id="availableTagsList"></div>
+                
+                <div class="form-group">
+                    <label for="linkTitle">Titel *</label>
+                    <input type="text" id="linkTitle" placeholder="Titel eingeben" required>
                 </div>
-                <div id="tagInputContainer">
-                    <div id="tagList"></div>
-                    <input type="text" id="tagInput" placeholder="Tag eingeben (Enter oder Komma zum Hinzufügen)">
-                    <div id="tagSuggestions"></div>
+                
+                <div class="form-group">
+                    <label for="linkUrl">URL *</label>
+                    <input type="url" id="linkUrl" placeholder="https://example.com" required>
                 </div>
-                <textarea id="linkNotes" placeholder="Notizen"></textarea>
-                <button type="submit" id="submitBtn"><i class="fas fa-save"></i> Speichern</button>
+                
+                <div class="form-group">
+                    <label>Tags</label>
+                    <div id="availableTags">
+                        <h4>Verfügbare Tags:</h4>
+                        <div id="availableTagsList"></div>
+                    </div>
+                    <div id="tagInputContainer">
+                        <label for="tagList">Ausgewählte Tags:</label>
+                        <div id="tagList"></div>
+                        <label for="tagInput">Neuen Tag hinzufügen:</label>
+                        <input type="text" id="tagInput" placeholder="Tag eingeben (Enter oder Komma zum Hinzufügen)">
+                        <div id="tagSuggestions"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="linkNotes">Notizen</label>
+                    <textarea id="linkNotes" placeholder="Optionale Notizen zum Link"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" id="submitBtn"><i class="fas fa-save"></i> Speichern</button>
+                    <button type="button" id="cancelBtn"><i class="fas fa-times"></i> Abbrechen</button>
+                </div>
             </form>
         </div>
         <div id="tileContainer">

@@ -26,8 +26,8 @@ body.dark-mode th {
 }
 
 body.dark-mode .link-tile .tag {
-    background-color: #333333;
-    color: #ddd;
+    background: linear-gradient(135deg, #4da6ff, #3d8bfd);
+    color: white;
 }
 
 body.dark-mode .close {
@@ -66,4 +66,105 @@ body.dark-mode .controls button:hover {
 body.dark-mode input::placeholder,
 body.dark-mode textarea::placeholder {
     color: #aaa;
+}
+
+/* Tag-related elements in dark mode */
+body.dark-mode #tagList {
+    background-color: #333;
+    border-color: #555;
+    color: #fff;
+}
+
+body.dark-mode #tagList:empty::before {
+    color: #888;
+}
+
+body.dark-mode #availableTags {
+    background-color: #2a2a2a;
+    border-color: #555;
+}
+
+body.dark-mode #availableTags h4 {
+    color: #ccc;
+}
+
+body.dark-mode #tagInput {
+    background-color: #444;
+    color: #fff;
+    border-color: #555;
+}
+
+body.dark-mode #tagInput:focus {
+    border-color: #4da6ff;
+    box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.25);
+}
+
+body.dark-mode #tagSuggestions {
+    background-color: #333;
+    border-color: #555;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .tag-suggestion {
+    color: #fff;
+}
+
+body.dark-mode .tag-suggestion:hover {
+    background-color: #444;
+}
+
+body.dark-mode .tag-suggestion.highlighted {
+    background-color: #4da6ff;
+    color: white;
+}
+
+body.dark-mode .available-tag {
+    background: linear-gradient(135deg, #4da6ff, #3d8bfd);
+    color: white;
+    opacity: 0.7;
+}
+
+body.dark-mode .available-tag:hover {
+    opacity: 1;
+    background: linear-gradient(135deg, #3d8bfd, #0d6efd);
+}
+
+body.dark-mode .available-tag.selected {
+    opacity: 1;
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+}
+
+/* Form styles in dark mode */
+body.dark-mode .form-group label {
+    color: #ccc;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    background-color: #444;
+    color: #fff;
+    border-color: #555;
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus {
+    border-color: #4da6ff;
+    box-shadow: 0 0 0 3px rgba(77, 166, 255, 0.1);
+}
+
+body.dark-mode #addLinkForm h2 {
+    color: #fff;
+}
+
+body.dark-mode .form-actions {
+    border-top-color: #555;
+}
+
+body.dark-mode #cancelBtn {
+    background-color: #555;
+    color: #fff;
+}
+
+body.dark-mode #cancelBtn:hover {
+    background-color: #666;
 }

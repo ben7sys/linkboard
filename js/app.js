@@ -69,6 +69,22 @@ showAddLinkFormBtn.addEventListener('click', () => {
     }
 });
 
+// Cancel button functionality
+document.getElementById('cancelBtn').addEventListener('click', () => {
+    // Ask for confirmation if form has content
+    const hasContent = document.getElementById('linkTitle').value.trim() ||
+                      document.getElementById('linkUrl').value.trim() ||
+                      document.getElementById('linkNotes').value.trim() ||
+                      tagList.children.length > 0;
+    
+    if (hasContent && !confirm('Möchten Sie das Bearbeiten wirklich abbrechen? Alle Änderungen gehen verloren.')) {
+        return;
+    }
+    
+    addLinkForm.style.display = 'none';
+    resetForm();
+});
+
 // Close form when clicking outside (but not when interacting with tags)
 document.addEventListener('click', (e) => {
     if (addLinkForm.style.display === 'block' && 
