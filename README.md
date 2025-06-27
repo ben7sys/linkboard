@@ -1,165 +1,217 @@
-# 🔗 Linkboard - Link Dashboard
+# Linkboard - Web-based Link Management System
 
-Ein modernes, benutzerfreundliches Dashboard zum Verwalten von Links mit verbesserter Bedienbarkeit und robuster Funktionalität.
+A modern dashboard for managing and organizing web links with advanced features for categorization, search, and user interaction.
 
-## ✨ Neue Features & Verbesserungen
+![preview](preview1.png)
 
-[[preview1.png]]
+## Architecture
 
-### 🎯 **Drastisch verbesserte Bedienbarkeit**
-- **Vereinfachte Benutzeroberfläche**: Nur noch 3 statt 4+ Buttons pro Kachel
-- **Intelligente Formular-Steuerung**: Schließt automatisch mit Escape oder Klick außerhalb
-- **Sofortiges Feedback**: Success/Error-Benachrichtigungen mit Animationen
-- **Bestätigungsdialoge**: Sicherheitsabfrage vor dem Löschen
-- **Loading-States**: Visuelles Feedback bei API-Operationen
+### Backend
+- **Runtime**: Node.js with Express.js Framework
+- **Database**: SQLite with automatic schema initialization
+- **API**: RESTful endpoints with CORS support
+- **Validation**: Server-side input validation and sanitization
+- **Error Handling**: Structured exception handling with HTTP status codes
 
-### 🏷️ **Repariertes Tag-System**
-- **Robuste Tag-Verarbeitung**: Keine Crashes mehr bei leeren/undefined Tags
-- **Verbesserte Tag-Filter**: Funktioniert jetzt zuverlässig
-- **Schöne Tag-Darstellung**: Farbverläufe und bessere Typografie
-- **Tag-Suggestions**: Autocomplete funktioniert einwandfrei
+### Frontend
+- **Technology**: Vanilla JavaScript (ES6+)
+- **Styling**: Modular CSS with CSS Custom Properties
+- **Responsive Design**: Mobile-first approach with Flexbox/Grid
+- **State Management**: LocalStorage for user preferences
+- **API Communication**: Fetch API with Promise-based error handling
 
-### 🎨 **Modernes Design**
-- **Neue Kachel-Optik**: Hover-Effekte, Schatten, bessere Hierarchie
-- **Responsive Layout**: Optimiert für alle Bildschirmgrößen
-- **Verbesserte Typografie**: Moderne Schriftarten und bessere Lesbarkeit
-- **Konsistente Farbgebung**: Harmonische Farben in Dark/Light Mode
+## Installation and Deployment
 
-### 🔧 **Technische Verbesserungen**
-- **Robuste Fehlerbehandlung**: Keine unbehandelten Exceptions mehr
-- **Input-Validierung**: Server-seitige Validierung für Datenintegrität
-- **Relative URLs**: Funktioniert jetzt auch ohne localhost
-- **Bessere Performance**: Optimierte API-Calls und Rendering
+### System Requirements
+- Node.js >= 14.0.0
+- npm >= 6.0.0
 
-## 🚀 Installation & Start
-
-### Voraussetzungen
-- Node.js (Version 14 oder höher)
-- npm
-
-### Schnellstart
+### Setup
 ```bash
-# Repository klonen oder herunterladen
+# Clone repository
+git clone <repository-url>
 cd linkboard
 
-# Abhängigkeiten installieren
+# Install dependencies
 npm install
 
-# Server starten
+# Start development server
 npm start
 ```
 
-Die Anwendung ist dann unter **http://localhost:3000** verfügbar.
+The application will be available at `http://localhost:3000`.
 
-## 📋 Funktionen
+### Production Deployment
+```bash
+# For production environment
+NODE_ENV=production npm start
+```
 
-### Grundfunktionen
-- ✅ Links hinzufügen, bearbeiten und löschen
-- ✅ Tags für Kategorisierung
-- ✅ Volltext-Suche (Titel, URL, Beschreibung, Tags)
-- ✅ Tag-Filter
-- ✅ Zwei Ansichten: Kachel- und Listen-Ansicht
-- ✅ Dark/Light Mode mit Speicherung der Präferenz
-- ✅ Notizen zu Links
-- ✅ Favicon-Anzeige
-- ✅ Detailansicht mit Modal
+## Feature Set
 
-### Neue Verbesserungen
-- 🆕 **Intelligente Benutzerführung**: Formulare schließen automatisch
-- 🆕 **Sofort-Feedback**: Success/Error-Benachrichtigungen
-- 🆕 **Bestätigungsdialoge**: Schutz vor versehentlichem Löschen
-- 🆕 **Keyboard-Navigation**: Escape zum Schließen, Enter zum Bestätigen
-- 🆕 **Loading-Indikatoren**: Visuelles Feedback bei Operationen
-- 🆕 **Robuste Tag-Behandlung**: Keine Crashes mehr
-- 🆕 **Responsive Design**: Optimiert für Mobile und Desktop
+### Core Features
+- **CRUD Operations**: Complete link management (Create, Read, Update, Delete)
+- **Tag System**: Hierarchical categorization with autocomplete functionality
+- **Search Function**: Full-text indexing across title, URL, description, and tags
+- **Filtering**: Tag-based filtering with combination capabilities
+- **Dual View**: Switchable display between card and list view
+- **Theme System**: Dark/Light mode with persistent storage
+- **Metadata**: Automatic favicon extraction and note functionality
 
-## 🎯 Bedienung
+### User Interaction
+- **Modal Dialogs**: Contextual forms for link editing
+- **Confirmation Dialogs**: Security prompts for destructive operations
+- **Keyboard Navigation**: Full keyboard support (ESC, Enter)
+- **Loading States**: Asynchronous operation feedback
+- **Toast Notifications**: Status notifications for user actions
 
-### Links verwalten
-1. **Hinzufügen**: Plus-Button → Formular ausfüllen → Speichern
-2. **Bearbeiten**: Edit-Button auf Kachel → Daten ändern → Aktualisieren
-3. **Löschen**: Trash-Button → Bestätigen
-4. **Details**: Info-Button für Detailansicht
+## API Documentation
 
-### Tags verwenden
-- **Hinzufügen**: Im Formular Tags eingeben (Enter oder Komma zum Trennen)
-- **Filtern**: Tag-Dropdown zum Filtern nach spezifischen Tags
-- **Autocomplete**: Beim Tippen werden vorhandene Tags vorgeschlagen
+### Endpoints
 
-### Suchen & Filtern
-- **Volltext-Suche**: Sucht in Titel, URL, Beschreibung und Tags
-- **Tag-Filter**: Dropdown zum Filtern nach spezifischen Tags
-- **Kombinierbar**: Suche und Tag-Filter können kombiniert werden
+#### GET /api/links
+Retrieves all links with optional query parameters.
+```
+Query Parameters:
+- search: string (optional) - Full-text search
+- tag: string (optional) - Tag filter
+```
 
-## 🛠️ Technische Details
+#### POST /api/links
+Creates a new link.
+```json
+{
+  "title": "string (required)",
+  "url": "string (required, valid URL)",
+  "description": "string (optional)",
+  "tags": "string (optional, comma-separated)",
+  "notes": "string (optional)"
+}
+```
 
-### Backend
-- **Node.js** mit Express.js
-- **SQLite** Datenbank (automatisch erstellt)
-- **CORS** aktiviert
-- **Input-Validierung** implementiert
-- **Robuste Fehlerbehandlung**
+#### PUT /api/links/:id
+Updates an existing link.
 
-### Frontend
-- **Vanilla JavaScript** (keine Frameworks)
-- **Moderne CSS** mit Flexbox/Grid
-- **Responsive Design**
-- **Local Storage** für Präferenzen
-- **Fetch API** für Backend-Kommunikation
+#### DELETE /api/links/:id
+Permanently deletes a link.
 
-### Dateistruktur
+#### GET /api/tags
+Retrieves all available tags.
+
+## Database Schema
+
+### Links Table
+```sql
+CREATE TABLE links (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    url TEXT NOT NULL,
+    description TEXT,
+    tags TEXT,
+    notes TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+## Project Structure
+
 ```
 linkboard/
-├── server.js              # Express Server
-├── package.json           # Dependencies
-├── index.html            # Hauptseite
+├── server.js                 # Express server and API routes
+├── package.json              # Project configuration and dependencies
+├── package-lock.json         # Dependency lock file
+├── index.html               # Single-page application entry point
 ├── css/
-│   ├── base.css          # Grundstyles
-│   ├── layout.css        # Layout & Grid
-│   ├── components.css    # UI-Komponenten
-│   ├── dark-mode.css     # Dark Mode
-│   └── light-mode.css    # Light Mode
+│   ├── base.css             # CSS reset and base styles
+│   ├── layout.css           # Layout system and grid definitions
+│   ├── components.css       # UI component styles
+│   ├── dark-mode.css        # Dark theme variables
+│   └── light-mode.css       # Light theme variables
 ├── js/
-│   └── app.js           # Frontend-Logik
-└── links.db             # SQLite Datenbank (auto-generiert)
+│   └── app.js              # Frontend application logic
+├── notes/                   # Development documentation
+└── links.db                # SQLite database file (auto-generated)
 ```
 
-## 🔄 Changelog
+## Configuration
 
-### Version 2.0 (Aktuelle Verbesserungen)
-- ✅ **Tag-System komplett repariert**
-- ✅ **Bedienbarkeit drastisch verbessert**
-- ✅ **Modernes UI-Design implementiert**
-- ✅ **Robuste Fehlerbehandlung hinzugefügt**
-- ✅ **Responsive Design optimiert**
-- ✅ **Performance-Verbesserungen**
-- ✅ **Input-Validierung implementiert**
-- ✅ **Benutzerführung verbessert**
+### Environment Variables
+- `PORT`: Server port (default: 3000)
+- `NODE_ENV`: Environment (development/production)
+- `DB_PATH`: Path to SQLite database file
 
-### Vorherige Version
-- Grundfunktionalität
-- Basis UI
-- Tag-System (mit Bugs)
-- Einfache CRUD-Operationen
+### CSS Custom Properties
+The theme system uses CSS Custom Properties for consistent styling:
+```css
+:root {
+  --primary-color: #007bff;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  /* ... additional variables */
+}
+```
 
-## 🎨 Screenshots
+## Performance Optimizations
 
-Die Anwendung bietet jetzt:
-- **Moderne Kachel-Ansicht** mit Hover-Effekten
-- **Farbige Tags** mit Verläufen
-- **Saubere Button-Anordnung**
-- **Responsive Layout** für alle Geräte
-- **Konsistente Dark/Light Modes**
+- **Lazy Loading**: Asynchronous loading of link metadata
+- **Debounced Search**: Delayed search execution to reduce API calls
+- **Efficient DOM Updates**: Minimal DOM manipulations through Virtual-DOM-like patterns
+- **CSS Optimization**: Modular stylesheets with minimal redundancy
 
-## 🤝 Beitragen
+## Security Aspects
 
-Das Projekt ist bereit für weitere Verbesserungen:
-- Import/Export-Funktionalität
-- Kategorien zusätzlich zu Tags
-- Benutzer-Authentifizierung
-- Link-Vorschau
-- Bulk-Operationen
+- **Input Sanitization**: Server-side sanitization of all user inputs
+- **SQL Injection Protection**: Prepared statements for database operations
+- **XSS Prevention**: Escaping of HTML content in output
+- **CORS Configuration**: Controlled cross-origin requests
 
----
+## Browser Compatibility
 
-**Entwickelt mit ❤️ für bessere Link-Verwaltung**
+- Chrome/Chromium >= 60
+- Firefox >= 55
+- Safari >= 12
+- Edge >= 79
+
+## Development
+
+### Code Standards
+- ES6+ JavaScript with strict typing
+- Modular CSS with BEM-like naming convention
+- RESTful API design principles
+- Semantic HTML5
+
+### Testing
+```bash
+# Run unit tests (if implemented)
+npm test
+
+# Linting
+npm run lint
+```
+
+## Roadmap
+
+### Planned Features
+- Import/Export functionality (JSON, CSV)
+- User authentication and authorization
+- Link categories in addition to tags
+- Bulk operations for multiple links
+- Link preview with thumbnail generation
+- API rate limiting
+- Full-text search index optimization
+
+### Technical Improvements
+- TypeScript migration
+- Unit test suite
+- Docker containerization
+- CI/CD pipeline
+- Performance monitoring
+
+## License
+
+[License information to be added]
+
+## Contributing
+
+Contributions are welcome. Please follow the coding standards and create pull requests against the `develop` branch.
