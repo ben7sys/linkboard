@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/light-mode.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
-<body class="dark-mode">
+<body>
     <div class="container">
         <div class="header">
             <h1>Link Dashboard</h1>
@@ -44,16 +44,16 @@
                 
                 <div class="form-group">
                     <label>Tags</label>
+                    <div id="tagInputContainer">
+                        <label for="tagInput">Neuen Tag hinzufügen:</label>
+                        <input type="text" id="tagInput" placeholder="Tag eingeben (Enter oder Komma zum Hinzufügen)">
+                        <label for="tagList">Ausgewählte Tags:</label>
+                        <div id="tagList"></div>
+                        <div id="tagSuggestions"></div>
+                    </div>
                     <div id="availableTags">
                         <h4>Verfügbare Tags:</h4>
                         <div id="availableTagsList"></div>
-                    </div>
-                    <div id="tagInputContainer">
-                        <label for="tagList">Ausgewählte Tags:</label>
-                        <div id="tagList"></div>
-                        <label for="tagInput">Neuen Tag hinzufügen:</label>
-                        <input type="text" id="tagInput" placeholder="Tag eingeben (Enter oder Komma zum Hinzufügen)">
-                        <div id="tagSuggestions"></div>
                     </div>
                 </div>
                 

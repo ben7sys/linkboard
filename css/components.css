@@ -1,17 +1,16 @@
 /* Add Link Form styles */
 #addLinkForm {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
     border-radius: 8px;
     padding: 24px;
     margin-bottom: 20px;
     transition: border-color 0.3s ease;
-    max-width: 600px;
 }
 
 #addLinkForm.has-changes {
-    border-color: #ffc107;
-    box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.25);
+    border-color: var(--warning);
+    box-shadow: 0 0 0 2px var(--focus-ring);
 }
 
 #addLinkForm.has-changes::before {
@@ -30,7 +29,7 @@
 #addLinkForm h2 {
     margin-top: 0;
     margin-bottom: 20px;
-    color: #333;
+    color: var(--text-primary);
     font-size: 1.4em;
     font-weight: 600;
 }
@@ -50,7 +49,7 @@
     display: block;
     margin-bottom: 6px;
     font-weight: 500;
-    color: #555;
+    color: var(--text-secondary);
     font-size: 0.9em;
 }
 
@@ -58,18 +57,25 @@
 .form-group textarea {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-primary);
     border-radius: 6px;
     font-size: 0.95em;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     box-sizing: border-box;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-placeholder);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 .form-group textarea {
@@ -84,7 +90,7 @@
     gap: 12px;
     margin-top: 24px;
     padding-top: 20px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-primary);
 }
 
 .form-actions button {
@@ -101,23 +107,33 @@
 }
 
 #submitBtn {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--accent-primary);
+    color: var(--tag-text);
 }
 
 #submitBtn:hover {
-    background-color: #0056b3;
+    background-color: var(--accent-primary-hover);
     transform: translateY(-1px);
+}
+
+#submitBtn:focus {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
 }
 
 #cancelBtn {
-    background-color: #6c757d;
-    color: white;
+    background-color: var(--text-muted);
+    color: var(--tag-text);
 }
 
 #cancelBtn:hover {
-    background-color: #545b62;
+    background-color: var(--text-secondary);
     transform: translateY(-1px);
+}
+
+#cancelBtn:focus {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
 }
 
 /* Tag Input Container styles */
@@ -130,7 +146,7 @@
     margin-bottom: 6px;
     margin-top: 12px;
     font-weight: 500;
-    color: #555;
+    color: var(--text-secondary);
     font-size: 0.9em;
 }
 
@@ -145,25 +161,25 @@
     margin-bottom: 12px;
     min-height: 40px;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-primary);
     border-radius: 6px;
-    background-color: #f9f9f9;
+    background-color: var(--bg-form);
     box-sizing: border-box;
 }
 
 #tagList:empty::before {
     content: "Keine Tags ausgewählt";
-    color: #999;
+    color: var(--text-placeholder);
     font-style: italic;
     font-size: 0.9em;
     line-height: 20px;
 }
 
 .tag {
-    background: linear-gradient(135deg, #007bff, #0056b3);
-    color: white;
+    background: var(--tag-bg);
+    color: var(--tag-text);
     padding: 4px 8px;
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 0.8em;
     font-weight: 500;
     display: inline-flex;
@@ -185,8 +201,8 @@
 
 .tag.editable-tag:hover,
 #tagList .tag:hover {
-    background: linear-gradient(135deg, #0056b3, #004085);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    background: var(--tag-bg-hover);
+    box-shadow: 0 1px 2px var(--shadow-light);
 }
 
 .tag .remove-tag {
@@ -204,33 +220,39 @@
 
 #tagInput {
     width: 100%;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-primary);
     border-radius: 6px;
-    padding: 10px 12px;
+    padding: 8px 10px;
     font-size: 0.95em;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     box-sizing: border-box;
 }
 
+#tagInput::placeholder {
+    color: var(--text-placeholder);
+}
+
 #tagInput:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 /* Available Tags Display */
 #availableTags {
     margin-bottom: 12px;
-    padding: 12px;
-    border: 1px solid #ddd;
+    padding: 10px;
+    border: 1px solid var(--border-primary);
     border-radius: 6px;
-    background-color: #f8f9fa;
+    background-color: var(--bg-tertiary);
 }
 
 #availableTags h4 {
     margin: 0 0 10px 0;
     font-size: 0.9em;
-    color: #555;
+    color: var(--text-secondary);
     font-weight: 500;
 }
 
@@ -243,16 +265,16 @@
 
 #availableTagsList:empty::after {
     content: "Noch keine Tags vorhanden";
-    color: #999;
+    color: var(--text-placeholder);
     font-style: italic;
     font-size: 0.85em;
 }
 
 .available-tag {
-    background: linear-gradient(135deg, #007bff, #0056b3);
-    color: white;
+    background: var(--tag-bg);
+    color: var(--tag-text);
     padding: 2px 6px;
-    border-radius: 8px;
+    border-radius: 6px;
     font-size: 0.75em;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -262,12 +284,12 @@
 
 .available-tag:hover {
     opacity: 1;
-    background: linear-gradient(135deg, #0056b3, #004085);
+    background: var(--tag-bg-hover);
 }
 
 .available-tag.selected {
     opacity: 1;
-    background: linear-gradient(135deg, #28a745, #1e7e34);
+    background: var(--tag-bg-selected);
 }
 
 /* Tag auto-suggestion styles */
@@ -276,14 +298,14 @@
     top: 100%;
     left: 0;
     right: 0;
-    background-color: white;
-    border: 1px solid #ddd;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
     border-top: none;
     border-radius: 0 0 4px 4px;
     max-height: 120px;
     overflow-y: auto;
     z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px var(--shadow-light);
     display: none;
 }
 
@@ -295,35 +317,36 @@
     padding: 8px 12px;
     cursor: pointer;
     font-size: 0.9em;
+    color: var(--text-primary);
     transition: background-color 0.2s ease;
 }
 
 .tag-suggestion:hover {
-    background-color: #f8f9fa;
+    background-color: var(--bg-hover);
 }
 
 .tag-suggestion.highlighted {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--accent-primary);
+    color: var(--tag-text);
 }
 
 /* Improved Tile styles */
 .link-tile {
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-primary);
     padding: 16px;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: var(--bg-secondary);
     display: flex;
     flex-direction: column;
     height: 240px;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px var(--shadow-light);
 }
 
 .link-tile:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    border-color: #007bff;
+    box-shadow: 0 4px 12px var(--shadow-medium);
+    border-color: var(--accent-primary);
 }
 
 .link-header {
@@ -337,7 +360,7 @@
     margin: 0;
     font-size: 1.1em;
     font-weight: 600;
-    color: #333;
+    color: var(--text-primary);
     flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -356,7 +379,7 @@
 }
 
 .link-url a {
-    color: #007bff;
+    color: var(--accent-primary);
     text-decoration: none;
     font-size: 0.9em;
     display: block;
@@ -367,6 +390,7 @@
 
 .link-url a:hover {
     text-decoration: underline;
+    color: var(--accent-primary-hover);
 }
 
 .link-tags {
@@ -378,8 +402,8 @@
 }
 
 .link-tags .tag {
-    background: linear-gradient(135deg, #007bff, #0056b3);
-    color: white;
+    background: var(--tag-bg);
+    color: var(--tag-text);
     padding: 2px 8px;
     border-radius: 12px;
     font-size: 0.75em;
@@ -391,7 +415,7 @@
 .link-notes {
     flex-grow: 1;
     font-size: 0.85em;
-    color: #666;
+    color: var(--text-muted);
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -406,7 +430,7 @@
     gap: 8px;
     margin-top: auto;
     padding-top: 8px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-primary);
 }
 
 .link-actions button {
@@ -416,31 +440,54 @@
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s ease;
-    color: #666;
+    color: var(--text-muted);
 }
 
 .link-actions button:hover {
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: var(--bg-hover);
+    color: var(--text-primary);
     transform: scale(1.1);
 }
 
+.link-actions button:focus {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
 .link-actions .editBtn:hover {
-    color: #007bff;
+    color: var(--accent-primary);
 }
 
 .link-actions .deleteBtn:hover {
-    color: #dc3545;
+    color: var(--danger);
 }
 
 .link-actions .info-btn:hover {
-    color: #28a745;
+    color: var(--success);
 }
 
 /* Button styles */
 .controls button {
     font-size: 1.2em;
     padding: 8px 12px;
+    background: none;
+    border: none;
+    color: var(--accent-primary);
+    transition: color 0.3s ease, transform 0.1s ease;
+}
+
+.controls button:hover {
+    color: var(--accent-primary-hover);
+    transform: translateY(-1px);
+}
+
+.controls button:active {
+    transform: translateY(1px);
+}
+
+.controls button:focus {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
 }
 
 #searchInput {
@@ -448,15 +495,34 @@
     max-width: 500px;
     margin-right: 10px;
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-primary);
     border-radius: 4px;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+}
+
+#searchInput::placeholder {
+    color: var(--text-placeholder);
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 2px var(--focus-ring);
 }
 
 #tagFilter {
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-primary);
     border-radius: 4px;
-    background-color: white;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+}
+
+#tagFilter:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 2px var(--focus-ring);
 }
 
 .editBtn, .deleteBtn, .info-btn, .saveBtn, .edit-title-btn, .edit-url-btn, .edit-tags-btn, .edit-notes-btn {
@@ -466,31 +532,19 @@
     padding: 5px;
     margin-left: 5px;
     cursor: pointer;
-    transition: color 0.3s, transform 0.1s;
-    color: rgba(0, 0, 0, 0.5);
+    transition: color 0.3s ease, transform 0.1s ease;
+    color: var(--text-muted);
 }
 
 .editBtn:hover, .deleteBtn:hover, .info-btn:hover, .saveBtn:hover, 
 .edit-title-btn:hover, .edit-url-btn:hover, .edit-tags-btn:hover, .edit-notes-btn:hover {
-    color: rgba(0, 0, 0, 0.8);
+    color: var(--text-primary);
 }
 
-.controls button {
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    padding: 8px;
-    color: rgba(0, 123, 255, 0.7);
-    transition: color 0.3s, transform 0.1s;
-}
-
-.controls button:hover {
-    color: rgba(0, 86, 179, 0.9);
-    transform: translateY(-1px);
-}
-
-.controls button:active {
-    transform: translateY(1px);
+.editBtn:focus, .deleteBtn:focus, .info-btn:focus, .saveBtn:focus, 
+.edit-title-btn:focus, .edit-url-btn:focus, .edit-tags-btn:focus, .edit-notes-btn:focus {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
 }
 
 #darkModeToggle {
@@ -499,16 +553,17 @@
 }
 
 .close {
-    color: #aaa;
+    color: var(--text-muted);
     float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .close:hover,
 .close:focus {
-    color: #000;
+    color: var(--text-primary);
     text-decoration: none;
     cursor: pointer;
 }
@@ -525,11 +580,11 @@
     cursor: text;
     padding: 2px;
     border: 1px solid transparent;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s ease;
 }
 
 .editable:hover, .editable:focus {
-    border-color: #dbdbdb;
+    border-color: var(--border-secondary);
     outline: none;
 }
 
@@ -541,21 +596,48 @@
 
 #listContainer th, #listContainer td {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-primary);
     text-align: left;
+    background-color: var(--bg-secondary);
 }
 
 #listContainer th {
-    background-color: #f2f2f2;
+    background-color: var(--bg-hover);
     font-weight: bold;
+    color: var(--text-primary);
 }
 
-#listContainer tr:nth-child(even) {
-    background-color: #f9f9f9;
+#listContainer tr:nth-child(even) td {
+    background-color: var(--bg-tertiary);
 }
 
-#listContainer tr:hover {
-    background-color: #f5f5f5;
+#listContainer tr:hover td {
+    background-color: var(--bg-hover);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: var(--bg-modal);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    color: var(--text-primary);
+    box-shadow: 0 4px 20px var(--shadow-medium);
 }
 
 /* New styles for edit buttons */
@@ -566,12 +648,12 @@
     padding: 2px;
     margin-left: 5px;
     cursor: pointer;
-    transition: color 0.3s;
-    color: rgba(131, 131, 131, 0.5);
+    transition: color 0.3s ease;
+    color: var(--text-muted);
 }
 
 .edit-title-btn:hover, .edit-url-btn:hover, .edit-tags-btn:hover, .edit-notes-btn:hover {
-    color: rgba(0, 0, 0, 0.8);
+    color: var(--text-primary);
 }
 
 /* Adjustments for all editable containers */

@@ -1,170 +1,50 @@
+/* Dark mode class-based overrides */
 body.dark-mode {
-    background-color: #191919;
-    color: #fff;
+    --bg-primary: #191919;
+    --bg-secondary: #202020;
+    --bg-tertiary: #2a2a2a;
+    --bg-form: #333;
+    --bg-input: #444;
+    --bg-hover: #444;
+    --bg-modal: #202020;
+    
+    --text-primary: #fff;
+    --text-secondary: #ccc;
+    --text-muted: #aaa;
+    --text-placeholder: #888;
+    
+    --border-primary: #444444;
+    --border-secondary: #555;
+    --border-focus: #4da6ff;
+    
+    --accent-primary: #4da6ff;
+    --accent-primary-hover: #3d8bfd;
+    --accent-secondary: #79bcff;
+    
+    --tag-bg: linear-gradient(135deg, #4da6ff, #3d8bfd);
+    --tag-bg-hover: linear-gradient(135deg, #3d8bfd, #0d6efd);
+    --tag-bg-selected: linear-gradient(135deg, #28a745, #1e7e34);
+    
+    --shadow-light: rgba(0,0,0,0.3);
+    --shadow-medium: rgba(0,0,0,0.4);
+    --focus-ring: rgba(77, 166, 255, 0.25);
 }
 
-body.dark-mode #addLinkForm,
-body.dark-mode .link-tile,
-body.dark-mode th,
-body.dark-mode td,
-body.dark-mode .modal-content {
-    border-color: #444444;
-    background-color: #202020;
+/* Ensure proper inheritance */
+body.dark-mode * {
+    color: inherit;
 }
 
-body.dark-mode #linkForm input,
-body.dark-mode #linkForm textarea,
-body.dark-mode #searchInput,
-body.dark-mode #tagFilter {
-    background-color: #444;
-    color: #fff;
-    border-color: #555;
-}
-
-body.dark-mode th {
-    background-color: #444;
-}
-
-body.dark-mode .link-tile .tag {
-    background: linear-gradient(135deg, #4da6ff, #3d8bfd);
-    color: white;
-}
-
-body.dark-mode .close {
-    color: #ddd;
-}
-
-body.dark-mode .close:hover,
-body.dark-mode .close:focus {
-    color: #fff;
-}
-
-body.dark-mode .editBtn,
-body.dark-mode .deleteBtn,
-body.dark-mode .info-btn {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-body.dark-mode .editBtn:hover,
-body.dark-mode .deleteBtn:hover,
-body.dark-mode .info-btn:hover {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-body.dark-mode a {
-    color: #4da6ff;
-}
-
-body.dark-mode .controls button {
-    color: rgba(77, 166, 255, 0.7);
-}
-
-body.dark-mode .controls button:hover {
-    color: rgba(121, 188, 255, 0.9);
+/* Override any remaining hardcoded colors */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    border-color: var(--border-secondary);
 }
 
 body.dark-mode input::placeholder,
 body.dark-mode textarea::placeholder {
-    color: #aaa;
-}
-
-/* Tag-related elements in dark mode */
-body.dark-mode #tagList {
-    background-color: #333;
-    border-color: #555;
-    color: #fff;
-}
-
-body.dark-mode #tagList:empty::before {
-    color: #888;
-}
-
-body.dark-mode #availableTags {
-    background-color: #2a2a2a;
-    border-color: #555;
-}
-
-body.dark-mode #availableTags h4 {
-    color: #ccc;
-}
-
-body.dark-mode #tagInput {
-    background-color: #444;
-    color: #fff;
-    border-color: #555;
-}
-
-body.dark-mode #tagInput:focus {
-    border-color: #4da6ff;
-    box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.25);
-}
-
-body.dark-mode #tagSuggestions {
-    background-color: #333;
-    border-color: #555;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-body.dark-mode .tag-suggestion {
-    color: #fff;
-}
-
-body.dark-mode .tag-suggestion:hover {
-    background-color: #444;
-}
-
-body.dark-mode .tag-suggestion.highlighted {
-    background-color: #4da6ff;
-    color: white;
-}
-
-body.dark-mode .available-tag {
-    background: linear-gradient(135deg, #4da6ff, #3d8bfd);
-    color: white;
-    opacity: 0.7;
-}
-
-body.dark-mode .available-tag:hover {
-    opacity: 1;
-    background: linear-gradient(135deg, #3d8bfd, #0d6efd);
-}
-
-body.dark-mode .available-tag.selected {
-    opacity: 1;
-    background: linear-gradient(135deg, #28a745, #1e7e34);
-}
-
-/* Form styles in dark mode */
-body.dark-mode .form-group label {
-    color: #ccc;
-}
-
-body.dark-mode .form-group input,
-body.dark-mode .form-group textarea {
-    background-color: #444;
-    color: #fff;
-    border-color: #555;
-}
-
-body.dark-mode .form-group input:focus,
-body.dark-mode .form-group textarea:focus {
-    border-color: #4da6ff;
-    box-shadow: 0 0 0 3px rgba(77, 166, 255, 0.1);
-}
-
-body.dark-mode #addLinkForm h2 {
-    color: #fff;
-}
-
-body.dark-mode .form-actions {
-    border-top-color: #555;
-}
-
-body.dark-mode #cancelBtn {
-    background-color: #555;
-    color: #fff;
-}
-
-body.dark-mode #cancelBtn:hover {
-    background-color: #666;
+    color: var(--text-placeholder);
 }

@@ -27,10 +27,19 @@ function saveDarkModePreference(isDark) {
     localStorage.setItem('darkMode', isDark);
 }
 
+// Function to detect system preference
+function getSystemPreference() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
 // Function to load dark mode preference
 function loadDarkModePreference() {
     const savedPreference = localStorage.getItem('darkMode');
-    return savedPreference === null ? true : savedPreference === 'true';
+    if (savedPreference === null) {
+        // No saved preference, use system preference
+        return getSystemPreference();
+    }
+    return savedPreference === 'true';
 }
 
 // Function to set dark mode
@@ -38,8 +47,27 @@ function setDarkMode(isDark) {
     isDarkMode = isDark;
     document.body.classList.toggle('dark-mode', isDark);
     document.body.classList.toggle('light-mode', !isDark);
-    darkModeToggleBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    
+    // Update button icon with better accessibility
+    const icon = isDark ? 'fa-sun' : 'fa-moon';
+    const title = isDark ? 'Zu Light Mode wechseln' : 'Zu Dark Mode wechseln';
+    darkModeToggleBtn.innerHTML = `<i class="fas ${icon}"></i>`;
+    darkModeToggleBtn.title = title;
+    darkModeToggleBtn.setAttribute('aria-label', title);
+    
     saveDarkModePreference(isDark);
+}
+
+// Listen for system preference changes
+if (window.matchMedia) {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', (e) => {
+        // Only auto-switch if user hasn't manually set a preference
+        const savedPreference = localStorage.getItem('darkMode');
+        if (savedPreference === null) {
+            setDarkMode(e.matches);
+        }
+    });
 }
 
 // Initialize dark mode

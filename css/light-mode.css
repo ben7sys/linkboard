@@ -1,69 +1,205 @@
+/* Light mode class-based overrides */
 body.light-mode {
-    background-color: #e7e7e7;
-    color: #333333;
+    --bg-primary: #e7e7e7;
+    --bg-secondary: #f9f9f9;
+    --bg-tertiary: #f8f9fa;
+    --bg-form: #ffffff;
+    --bg-input: #ffffff;
+    --bg-hover: #f8f9fa;
+    --bg-modal: #f9f9f9;
+    
+    --text-primary: #333333;
+    --text-secondary: #555;
+    --text-muted: #666;
+    --text-placeholder: #999999;
+    
+    --border-primary: #dddddd;
+    --border-secondary: #cccccc;
+    --border-focus: #007bff;
+    
+    --accent-primary: #007bff;
+    --accent-primary-hover: #0056b3;
+    --accent-secondary: #0056b3;
+    
+    --tag-bg: linear-gradient(135deg, #007bff, #0056b3);
+    --tag-bg-hover: linear-gradient(135deg, #0056b3, #004085);
+    --tag-bg-selected: linear-gradient(135deg, #6c757d, #545b62);
+    
+    --shadow-light: rgba(0,0,0,0.1);
+    --shadow-medium: rgba(0,0,0,0.15);
+    --focus-ring: rgba(0, 123, 255, 0.25);
 }
 
-body.light-mode #addLinkForm,
-body.light-mode .link-tile,
-body.light-mode th,
-body.light-mode td,
-body.light-mode .modal-content {
-    background-color: #f9f9f9;
-    border-color: #dddddd;
+/* Ensure proper inheritance */
+body.light-mode * {
+    color: inherit;
 }
 
-body.light-mode #linkForm input,
-body.light-mode #linkForm textarea,
-body.light-mode #searchInput,
-body.light-mode #tagFilter {
-    background-color: #ffffff;
-    color: #333333;
-    border-color: #cccccc;
-}
-
-body.light-mode th {
-    background-color: #f2f2f2;
-}
-
-body.light-mode .link-tile .tag {
-    background-color: #e0e0e0;
-    color: #333333;
-}
-
-body.light-mode .close {
-    color: #666666;
-}
-
-body.light-mode .close:hover,
-body.light-mode .close:focus {
-    color: #333333;
-}
-
-body.light-mode .editBtn,
-body.light-mode .deleteBtn,
-body.light-mode .info-btn {
-    color: rgba(0, 0, 0, 0.5);
-}
-
-body.light-mode .editBtn:hover,
-body.light-mode .deleteBtn:hover,
-body.light-mode .info-btn:hover {
-    color: rgba(0, 0, 0, 0.8);
-}
-
-body.light-mode a {
-    color: #0056b3;
-}
-
-body.light-mode .controls button {
-    color: rgba(90, 90, 90, 0.9);
-}
-
-body.light-mode .controls button:hover {
-    color: rgba(90, 90, 90, 0.9);
+/* Override any remaining hardcoded colors */
+body.light-mode input,
+body.light-mode textarea,
+body.light-mode select {
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    border-color: var(--border-secondary);
 }
 
 body.light-mode input::placeholder,
 body.light-mode textarea::placeholder {
-    color: #999999;
+    color: var(--text-placeholder);
+}
+
+/* Light mode specific adjustments */
+body.light-mode .modal {
+    background-color: rgba(0,0,0,0.5);
+}
+
+/* Ensure good contrast for links in light mode */
+body.light-mode a {
+    color: var(--accent-primary);
+}
+
+body.light-mode a:hover {
+    color: var(--accent-primary-hover);
+}
+
+/* Better visibility for buttons in light mode */
+body.light-mode .controls button {
+    color: var(--accent-primary);
+    opacity: 0.8;
+}
+
+body.light-mode .controls button:hover {
+    color: var(--accent-primary-hover);
+    opacity: 1;
+}
+
+/* Improved contrast for action buttons */
+body.light-mode .link-actions button {
+    color: var(--text-muted);
+}
+
+body.light-mode .link-actions button:hover {
+    color: var(--text-primary);
+}
+
+body.light-mode .link-actions .editBtn:hover {
+    color: var(--accent-primary);
+}
+
+body.light-mode .link-actions .deleteBtn:hover {
+    color: var(--danger);
+}
+
+body.light-mode .link-actions .info-btn:hover {
+    color: var(--success);
+}
+
+/* Light mode specific tag improvements */
+body.light-mode .tag {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+body.light-mode #tagList .tag {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+body.light-mode #tagList .tag:hover {
+    background: linear-gradient(135deg, #0056b3, #004085);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
+}
+
+body.light-mode .tag .remove-tag {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: bold;
+}
+
+body.light-mode .tag .remove-tag:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+}
+
+/* Available tags improvements for light mode */
+body.light-mode .available-tag {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    color: #495057;
+    border: 1px solid #dee2e6;
+    font-weight: 500;
+    opacity: 1;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+body.light-mode .available-tag:hover {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border-color: #007bff;
+    box-shadow: 0 2px 4px rgba(0,123,255,0.25);
+    transform: translateY(-1px);
+}
+
+body.light-mode .available-tag.selected {
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    color: white;
+    border-color: #28a745;
+    box-shadow: 0 2px 4px rgba(40,167,69,0.25);
+    font-weight: 600;
+}
+
+body.light-mode .available-tag.selected::after {
+    content: " ✓";
+    font-size: 0.8em;
+    margin-left: 2px;
+}
+
+/* Tag suggestions improvements for light mode */
+body.light-mode .tag-suggestion {
+    color: var(--text-primary);
+    border-bottom: 1px solid #f1f3f4;
+}
+
+body.light-mode .tag-suggestion:hover {
+    background-color: #f8f9fa;
+    color: var(--accent-primary);
+}
+
+body.light-mode .tag-suggestion.highlighted {
+    background-color: var(--accent-primary);
+    color: white;
+}
+
+/* Available tags container styling for light mode */
+body.light-mode #availableTags {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+}
+
+body.light-mode #availableTags h4 {
+    color: #495057;
+    font-weight: 600;
+}
+
+/* Tag list container for light mode */
+body.light-mode #tagList {
+    background-color: white;
+    border: 1px solid #dee2e6;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+}
+
+body.light-mode #tagList:empty::before {
+    color: #6c757d;
 }
