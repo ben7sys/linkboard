@@ -4,6 +4,8 @@ Ein modernes, benutzerfreundliches Dashboard zum Verwalten von Links mit verbess
 
 ## ✨ Neue Features & Verbesserungen
 
+[[preview1.png]]
+
 ### 🎯 **Drastisch verbesserte Bedienbarkeit**
 - **Vereinfachte Benutzeroberfläche**: Nur noch 3 statt 4+ Buttons pro Kachel
 - **Intelligente Formular-Steuerung**: Schließt automatisch mit Escape oder Klick außerhalb
