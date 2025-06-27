@@ -208,10 +208,3 @@ npm run lint
 - CI/CD pipeline
 - Performance monitoring
 
-## License
-
-[License information to be added]
-
-## Contributing
-
-Contributions are welcome. Please follow the coding standards and create pull requests against the `develop` branch.
