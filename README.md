@@ -1,4 +1,4 @@
-# 🔗 Linkboard - Verbessertes Link Dashboard
+# 🔗 Linkboard - Link Dashboard
 
 Ein modernes, benutzerfreundliches Dashboard zum Verwalten von Links mit verbesserter Bedienbarkeit und robuster Funktionalität.
 

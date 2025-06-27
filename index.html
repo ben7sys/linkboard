@@ -25,6 +25,7 @@
                     <option value="">Alle Tags</option>
                 </select>
             </div>
+            <button id="manageTagsBtn" title="Tags verwalten"><i class="fas fa-tags"></i></button>
             <button id="toggleView" title="Ansicht wechseln"><i class="fas fa-th-list"></i></button>
         </div>
         <div id="addLinkForm" style="display: none;">
@@ -96,6 +97,22 @@
             <h2 id="detailedViewTitle"></h2>
             <div id="detailedViewContent"></div>
             <button id="editInDetailedView" title="Bearbeiten"><i class="fa-solid fa-pencil"></i></button>
+        </div>
+    </div>
+
+    <!-- Tag Management Modal -->
+    <div id="tagManagementModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeTagModal">&times;</span>
+            <h2>Tags verwalten</h2>
+            <div id="tagManagementContent">
+                <div id="tagManagementList">
+                    <!-- Tag management list will be populated here -->
+                </div>
+                <div class="tag-management-info">
+                    <p><i class="fas fa-info-circle"></i> Doppelklick auf einen Tag-Namen zum Umbenennen</p>
+                </div>
+            </div>
         </div>
     </div>
 

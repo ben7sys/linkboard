@@ -685,3 +685,137 @@
     flex-grow: 1;
     margin-right: 5px;
 }
+
+/* Tag Management Modal Styles */
+#tagManagementModal .modal-content {
+    max-width: 500px;
+    margin: 10% auto;
+}
+
+#tagManagementContent {
+    margin-top: 20px;
+}
+
+#tagManagementList {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.tag-management-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.tag-management-item:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--accent-primary);
+}
+
+.tag-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.tag-name {
+    font-weight: 500;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+.tag-name:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.tag-count {
+    font-size: 0.85em;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.tag-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.rename-tag-btn,
+.delete-tag-btn {
+    background: none;
+    border: none;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-muted);
+    font-size: 0.9em;
+}
+
+.rename-tag-btn:hover {
+    background-color: var(--accent-primary);
+    color: var(--tag-text);
+}
+
+.delete-tag-btn:hover {
+    background-color: var(--danger);
+    color: var(--tag-text);
+}
+
+.rename-tag-btn:focus,
+.delete-tag-btn:focus {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+.tag-rename-input {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    border: 1px solid var(--accent-primary);
+    border-radius: 3px;
+    padding: 2px 6px;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+.tag-management-info {
+    padding: 12px;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-radius: 6px;
+    margin-top: 16px;
+}
+
+.tag-management-info p {
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tag-management-info i {
+    color: var(--accent-primary);
+}
+
+/* Empty state for tag management */
+#tagManagementList p {
+    text-align: center;
+    padding: 40px 20px;
+    margin: 0;
+    font-size: 0.95em;
+}

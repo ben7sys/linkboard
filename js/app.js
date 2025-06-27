@@ -19,6 +19,10 @@ const tagInput = document.getElementById('tagInput');
 const tagList = document.getElementById('tagList');
 const tagSuggestions = document.getElementById('tagSuggestions');
 const availableTagsList = document.getElementById('availableTagsList');
+const manageTagsBtn = document.getElementById('manageTagsBtn');
+const tagManagementModal = document.getElementById('tagManagementModal');
+const closeTagModal = document.getElementById('closeTagModal');
+const tagManagementList = document.getElementById('tagManagementList');
 let isTileView = true;
 let isDarkMode = true;
 
@@ -554,6 +558,9 @@ window.onclick = function(event) {
     if (event.target == detailedViewModal) {
         detailedViewModal.style.display = 'none';
     }
+    if (event.target == tagManagementModal) {
+        tagManagementModal.style.display = 'none';
+    }
 }
 
 // Edit in detailed view
@@ -727,6 +734,199 @@ function showSuggestions(suggestions) {
 
 function hideSuggestions() {
     tagSuggestions.classList.remove('show');
+}
+
+// Tag Management functionality
+manageTagsBtn.addEventListener('click', showTagManagement);
+closeTagModal.addEventListener('click', () => {
+    tagManagementModal.style.display = 'none';
+});
+
+
+async function showTagManagement() {
+    try {
+        showLoading();
+        const response = await fetch('/api/tags');
+        if (!response.ok) throw new Error('Failed to fetch tags');
+        const tags = await response.json();
+        
+        renderTagManagement(tags);
+        tagManagementModal.style.display = 'block';
+    } catch (error) {
+        showNotification('Fehler beim Laden der Tags: ' + error.message, 'error');
+    } finally {
+        hideLoading();
+    }
+}
+
+function renderTagManagement(tags) {
+    if (tags.length === 0) {
+        tagManagementList.innerHTML = '<p style="text-align: center; color: #999; font-style: italic;">Noch keine Tags vorhanden</p>';
+        return;
+    }
+    
+    tagManagementList.innerHTML = '';
+    tags.sort((a, b) => a.name.localeCompare(b.name)).forEach(tag => {
+        const tagItem = document.createElement('div');
+        tagItem.className = 'tag-management-item';
+        tagItem.innerHTML = `
+            <div class="tag-info">
+                <span class="tag-name" data-original="${tag.name}">${tag.name}</span>
+                <span class="tag-count">(${tag.count} Link${tag.count !== 1 ? 's' : ''})</span>
+            </div>
+            <div class="tag-actions">
+                <button class="rename-tag-btn" title="Umbenennen" data-tag="${tag.name}">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="delete-tag-btn" title="Löschen" data-tag="${tag.name}">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+        `;
+        tagManagementList.appendChild(tagItem);
+    });
+    
+    // Add event listeners for rename and delete buttons
+    addTagManagementListeners();
+}
+
+function addTagManagementListeners() {
+    // Rename tag functionality
+    document.querySelectorAll('.rename-tag-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const tagName = e.target.closest('button').dataset.tag;
+            const tagNameSpan = e.target.closest('.tag-management-item').querySelector('.tag-name');
+            startTagRename(tagNameSpan, tagName);
+        });
+    });
+    
+    // Delete tag functionality
+    document.querySelectorAll('.delete-tag-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const tagName = e.target.closest('button').dataset.tag;
+            const tagCount = e.target.closest('.tag-management-item').querySelector('.tag-count').textContent;
+            deleteTag(tagName, tagCount);
+        });
+    });
+    
+    // Double-click to rename
+    document.querySelectorAll('.tag-name').forEach(span => {
+        span.addEventListener('dblclick', (e) => {
+            const tagName = e.target.dataset.original;
+            startTagRename(e.target, tagName);
+        });
+    });
+}
+
+function startTagRename(tagNameSpan, originalTagName) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = originalTagName;
+    input.className = 'tag-rename-input';
+    input.style.cssText = `
+        background: var(--input-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        padding: 4px 8px;
+        font-size: inherit;
+        color: var(--text-color);
+        width: 150px;
+    `;
+    
+    const finishRename = async () => {
+        const newTagName = input.value.trim();
+        if (newTagName && newTagName !== originalTagName) {
+            await renameTag(originalTagName, newTagName);
+        }
+        tagNameSpan.textContent = tagNameSpan.dataset.original;
+        tagNameSpan.style.display = 'inline';
+        input.remove();
+    };
+    
+    const cancelRename = () => {
+        tagNameSpan.style.display = 'inline';
+        input.remove();
+    };
+    
+    input.addEventListener('blur', finishRename);
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            finishRename();
+        } else if (e.key === 'Escape') {
+            e.preventDefault();
+            cancelRename();
+        }
+    });
+    
+    tagNameSpan.style.display = 'none';
+    tagNameSpan.parentNode.insertBefore(input, tagNameSpan.nextSibling);
+    input.focus();
+    input.select();
+}
+
+async function renameTag(oldTag, newTag) {
+    try {
+        showLoading();
+        const response = await fetch('/api/tags/rename', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ oldTag, newTag }),
+        });
+        
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Failed to rename tag');
+        }
+        
+        const result = await response.json();
+        showNotification(`Tag "${oldTag}" wurde zu "${newTag}" umbenannt (${result.updatedLinks} Links aktualisiert)`, 'success');
+        
+        // Refresh tag management and other displays
+        await showTagManagement();
+        await updateTagFilter();
+        await filterAndRenderLinks();
+        
+    } catch (error) {
+        showNotification('Fehler beim Umbenennen: ' + error.message, 'error');
+    } finally {
+        hideLoading();
+    }
+}
+
+async function deleteTag(tagName, tagCountText) {
+    const confirmMessage = `Möchten Sie den Tag "${tagName}" wirklich löschen?\n\nDieser Tag wird aus allen Links entfernt ${tagCountText}.`;
+    
+    if (!confirm(confirmMessage)) {
+        return;
+    }
+    
+    try {
+        showLoading();
+        const response = await fetch(`/api/tags/${encodeURIComponent(tagName)}`, {
+            method: 'DELETE',
+        });
+        
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Failed to delete tag');
+        }
+        
+        const result = await response.json();
+        showNotification(`Tag "${tagName}" wurde gelöscht (${result.updatedLinks} Links aktualisiert)`, 'success');
+        
+        // Refresh tag management and other displays
+        await showTagManagement();
+        await updateTagFilter();
+        await filterAndRenderLinks();
+        
+    } catch (error) {
+        showNotification('Fehler beim Löschen: ' + error.message, 'error');
+    } finally {
+        hideLoading();
+    }
 }
 
 // Initial render and setup
